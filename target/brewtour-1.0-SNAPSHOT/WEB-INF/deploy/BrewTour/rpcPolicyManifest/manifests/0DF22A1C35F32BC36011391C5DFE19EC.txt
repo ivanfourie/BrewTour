@@ -1,0 +1,2 @@
+serviceClass: za.co.brewtour.client.GreetingService
+path: 1710F2393BABA286189C2F2769AEE1FC.gwt.rpc

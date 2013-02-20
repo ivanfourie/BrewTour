@@ -1,0 +1,33 @@
+-------------------------------------------------------------------------------
+Test set: junit.framework.TestSuite@48b91881
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 30.569 sec <<< FAILURE!
+testGreetingService(za.co.brewtour.client.GwtTestBrewTour)  Time elapsed: 30.555 sec  <<< ERROR!
+com.google.gwt.junit.JUnitFatalLaunchException: Unable to resolve my address
+	at com.google.gwt.junit.JUnitShell.getUnitTestShell(JUnitShell.java:705)
+	at com.google.gwt.junit.JUnitShell.runTest(JUnitShell.java:652)
+	at com.google.gwt.junit.client.GWTTestCase.runTest(GWTTestCase.java:441)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at com.google.gwt.junit.client.GWTTestCase.run(GWTTestCase.java:296)
+	at junit.framework.TestSuite.runTest(TestSuite.java:232)
+	at junit.framework.TestSuite.run(TestSuite.java:227)
+	at junit.framework.TestSuite.runTest(TestSuite.java:232)
+	at junit.framework.TestSuite.run(TestSuite.java:227)
+	at org.codehaus.mojo.gwt.test.MavenTestRunner.doRun(MavenTestRunner.java:105)
+	at junit.textui.TestRunner.start(TestRunner.java:180)
+	at org.codehaus.mojo.gwt.test.MavenTestRunner.main(MavenTestRunner.java:63)
+Caused by: java.net.UnknownHostException: poepgesigte: poepgesigte: nodename nor servname provided, or not known
+	at java.net.InetAddress.getLocalHost(InetAddress.java:1438)
+	at com.google.gwt.junit.JUnitShell.getUnitTestShell(JUnitShell.java:703)
+	... 15 more
+Caused by: java.net.UnknownHostException: poepgesigte: nodename nor servname provided, or not known
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$1.lookupAllHostAddr(InetAddress.java:866)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1258)
+	at java.net.InetAddress.getLocalHost(InetAddress.java:1434)
+	... 16 more
+

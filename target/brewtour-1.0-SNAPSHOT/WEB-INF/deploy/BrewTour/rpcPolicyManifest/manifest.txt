@@ -1,0 +1,3 @@
+# Module BrewTour
+# RPC service class, partial path of RPC policy file
+za.co.brewtour.client.GreetingService, 1710F2393BABA286189C2F2769AEE1FC.gwt.rpc
