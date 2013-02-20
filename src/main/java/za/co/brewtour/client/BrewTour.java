@@ -26,7 +26,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
-import com.google.gwt.i18n.client.Messages;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -60,6 +59,7 @@ public class BrewTour implements EntryPoint {
    public void onModuleLoad() {
       final Button sendButton = new Button(messages.sendButton());
       final TextBox nameField = new TextBox();
+
       nameField.setText(messages.nameField());
       final Label errorLabel = new Label();
 
