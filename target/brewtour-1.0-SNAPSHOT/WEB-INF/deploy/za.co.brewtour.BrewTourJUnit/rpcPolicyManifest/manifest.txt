@@ -1,2 +1,0 @@
-# Module za.co.brewtour.BrewTourJUnit
-# RPC service class, partial path of RPC policy file
