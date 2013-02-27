@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
-lastWarOutDir=/Users/michaelbester/privateworkspace/BrewTour_/target/brewtour-1.0-SNAPSHOT
+jarsExcludedFromWebInfLib=
+lastWarOutDir=C\:/Users/ivan.fourie/Documents/GitHub/BrewTour/target/brewtour-1.0-SNAPSHOT
 warSrcDir=src/main/webapp
 warSrcDirIsOutput=false
