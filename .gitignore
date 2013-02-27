@@ -2,3 +2,9 @@
 target/
 .gwt
 .project
+.classpath
+.classpath_
+.factorypath
+.factorypath_
+.settings
+bin\
