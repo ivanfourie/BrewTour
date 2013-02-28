@@ -2,6 +2,7 @@
 target/
 .gwt
 .project
+_.project
 .classpath
 .classpath_
 .factorypath
