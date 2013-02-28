@@ -8,3 +8,4 @@ target/
 .factorypath_
 .settings
 bin\
+/bin
