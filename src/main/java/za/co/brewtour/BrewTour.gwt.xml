@@ -14,7 +14,9 @@
     <inherits name='com.gwtplatform.dispatch.Dispatch'/>
 
     <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
-
+	
+	<inherits name="com.github.gwtbootstrap.Bootstrap"/>
+	
     <!-- Specify the paths for translatable code                    -->
     <source path='client'/>
     <source path='shared'/>

@@ -16,50 +16,53 @@
 
 package za.co.brewtour.client.application;
 
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+//import com.google.gwt.user.client.ui.TextBox;
+
+//import com.google.gwt.user.client.ui.Button;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
-    public interface Binder extends UiBinder<Widget, ApplicationView> {
-    }
+   public interface Binder extends UiBinder<Widget, ApplicationView> {
+   }
 
-    @UiField
-    TextBox nameField;
-    @UiField
-    Button sendButton;
-    @UiField
-    HTML error;
+   @UiField
+   TextBox nameField;
+   @UiField
+   Button sendButton;
+   @UiField
+   HTML error;
 
-    @Inject
-    public ApplicationView(final Binder binder) {
-        initWidget(binder.createAndBindUi(this));
-    }
+   @Inject
+   public ApplicationView(final Binder binder) {
+      initWidget(binder.createAndBindUi(this));
+   }
 
-    @Override
-    public String getName() {
-        return nameField.getText();
-    }
+   @Override
+   public String getName() {
+      return nameField.getText();
+   }
 
-    @Override
-    public Button getSendButton() {
-        return sendButton;
-    }
+   @Override
+   public Button getSendButton() {
+      return sendButton;
+   }
 
-    @Override
-    public void resetAndFocus() {
-        // Focus the cursor on the name field when the app loads
-        nameField.setFocus(true);
-        nameField.selectAll();
-    }
+   @Override
+   public void resetAndFocus() {
+      // Focus the cursor on the name field when the app loads
+      nameField.setFocus(true);
+      nameField.selectAll();
+   }
 
-    @Override
-    public void setError(String errorText) {
-        error.setText(errorText);
-    }
+   @Override
+   public void setError(String errorText) {
+      error.setText(errorText);
+   }
 }

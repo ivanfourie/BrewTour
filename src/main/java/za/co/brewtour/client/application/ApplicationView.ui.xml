@@ -1,5 +1,5 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
     <ui:style>
         .root {
         width: 500px;
@@ -18,15 +18,35 @@
         .label-error {
         color: red;
         }
+        .{style.browser} {
+        }
     </ui:style>
-    <g:HTMLPanel styleName="{style.root}">
-
-        <h1>Welcome to Brew Tour!</h1>
-
-        <div class="{style.label}">Please enter your name:</div>
-        <g:TextBox ui:field="nameField"/>
-        <g:Button ui:field="sendButton">Send</g:Button>
-        <g:HTML ui:field="error" styleName="{style.label-error}"/>
-
+    <g:HTMLPanel ui:field="container" styleName="{style.root}">
+		
+		
+		
+			<b:ResponsiveNavbar position="TOP" scrollspy="false" inverse="true">
+				<b:Brand>The BrewTour Project</b:Brand>
+				<b:Nav>
+			        <b:NavLink icon="BEER" href="#beer">Beer</b:NavLink>
+			        <b:NavLink icon="BEAKER" href="#brewery">Brewery</b:NavLink>
+			        <b:NavLink icon="GLOBE" href="#location">Location</b:NavLink>
+			        <b:NavLink icon="TAG" href="#style">Style</b:NavLink>
+    			</b:Nav>
+				<b:NavSearch size="3" placeholder="Search" />
+			</b:ResponsiveNavbar> 
+			
+			
+			
+	        <h1>Welcome to Brew Tour!</h1>
+	
+	        <div class="{style.label}">Please enter your name:</div>
+	        <!--  <b:WellForm>  -->
+		        <b:TextBox placeholder="Type something…" ui:field="nameField"/>
+		        <g:HTML ui:field="error" styleName="{style.label-error}"/>
+		        <b:Button type="PRIMARY" ui:field="sendButton">Send</b:Button>
+	        
+	        
+		
     </g:HTMLPanel>
 </ui:UiBinder>

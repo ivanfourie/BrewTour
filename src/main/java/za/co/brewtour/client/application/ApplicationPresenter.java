@@ -16,9 +16,13 @@
 
 package za.co.brewtour.client.application;
 
+import za.co.brewtour.client.application.response.ResponsePresenter;
+import za.co.brewtour.client.place.NameTokens;
+import za.co.brewtour.shared.FieldVerifier;
+
+import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -29,74 +33,74 @@ import com.gwtplatform.mvp.client.proxy.Place;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.Proxy;
-import za.co.brewtour.client.application.response.ResponsePresenter;
-import za.co.brewtour.client.place.NameTokens;
-import za.co.brewtour.shared.FieldVerifier;
+
+//import com.google.gwt.user.client.ui.Button;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
-    /**
-     * {@link ApplicationPresenter}'s proxy.
-     */
-    @ProxyStandard
-    @NameToken(NameTokens.home)
-    public interface MyProxy extends Proxy<ApplicationPresenter>, Place {
-    }
+   /**
+    * {@link ApplicationPresenter}'s proxy.
+    */
+   @ProxyStandard
+   @NameToken(NameTokens.home)
+   public interface MyProxy extends Proxy<ApplicationPresenter>, Place {
+   }
 
-    /**
-     * {@link ApplicationPresenter}'s view.
-     */
-    public interface MyView extends View {
-        String getName();
+   /**
+    * {@link ApplicationPresenter}'s view.
+    */
+   public interface MyView extends View {
+      String getName();
 
-        Button getSendButton();
+      Button getSendButton();
 
-        void resetAndFocus();
+      void resetAndFocus();
 
-        void setError(String errorText);
-    }
+      void setError(String errorText);
+   }
 
-    private final PlaceManager placeManager;
+   private final PlaceManager placeManager;
 
-    @Inject
-    public ApplicationPresenter(EventBus eventBus, MyView view, MyProxy proxy, PlaceManager placeManager) {
-        super(eventBus, view, proxy, RevealType.Root);
+   @Inject
+   public ApplicationPresenter(EventBus eventBus, MyView view, MyProxy proxy, PlaceManager placeManager) {
+      super(eventBus, view, proxy, RevealType.Root);
 
-        this.placeManager = placeManager;
-    }
+      this.placeManager = placeManager;
+   }
 
-    @Override
-    protected void onBind() {
-        super.onBind();
+   @Override
+   protected void onBind() {
+      super.onBind();
 
-        registerHandler(getView().getSendButton().addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                sendNameToServer();
-            }
-        }));
-    }
+      registerHandler(getView().getSendButton().addClickHandler(new ClickHandler() {
+         @Override
+         public void onClick(ClickEvent event) {
+            sendNameToServer();
+         }
+      }));
+   }
 
-    @Override
-    protected void onReset() {
-        super.onReset();
+   @Override
+   protected void onReset() {
+      super.onReset();
 
-        getView().resetAndFocus();
-    }
+      getView().resetAndFocus();
+   }
 
-    /**
-     * Send the name from the nameField to the server and wait for a response.
-     */
-    private void sendNameToServer() {
-        // First, we validate the input.
-        getView().setError("");
-        String textToServer = getView().getName();
-        if (!FieldVerifier.isValidName(textToServer)) {
-            getView().setError("Please enter at least four characters");
-            return;
-        }
+   /**
+    * Send the name from the nameField to the server and wait for a response.
+    */
+   private void sendNameToServer() {
+      // First, we validate the input.
+      getView().setError("");
+      String textToServer = getView().getName();
+      if (!FieldVerifier.isValidName(textToServer)) {
+         getView().setError("Please enter at least four characters");
+         return;
+      }
 
-        // Then, we transmit it to the ResponsePresenter, which will do the server call
-        placeManager.revealPlace(new PlaceRequest(NameTokens.response).with(ResponsePresenter.textToServerParam,
-                textToServer));
-    }
+      // Then, we transmit it to the ResponsePresenter, which will do the server
+      // call
+      placeManager.revealPlace(new PlaceRequest(NameTokens.response).with(ResponsePresenter.textToServerParam,
+            textToServer));
+   }
 }

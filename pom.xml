@@ -32,6 +32,11 @@
         -->
         <gwt.style>DETAILED</gwt.style>
 
+        <gwt.platform>1.0-RC-2</gwt.platform>
+        <gwt.gin>2.0.0</gwt.gin>
+        <cglib>2.2</cglib>
+        <javax.jdo>2.3-eb</javax.jdo>
+        <gwt.bootstrap>2.2.1.0-SNAPSHOT</gwt.bootstrap>
     </properties>
 
     <build>
@@ -53,11 +58,13 @@
                         <goals>
                             <goal>clean</goal>
                             <goal>compile</goal>
+                            <goal>generateAsync</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
 
+			
             <plugin>
                 <groupId>net.kindleit</groupId>
                 <artifactId>maven-gae-plugin</artifactId>
@@ -66,7 +73,7 @@
                     <splitJars>true</splitJars>
                 </configuration>
             </plugin>
-
+ 			
             <!--
                 Upload application to the appspot automatically, during
                 release:perform
@@ -104,6 +111,41 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+        	<plugins>
+        		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        		<plugin>
+        			<groupId>org.eclipse.m2e</groupId>
+        			<artifactId>lifecycle-mapping</artifactId>
+        			<version>1.0.0</version>
+        			<configuration>
+        				<lifecycleMappingMetadata>
+        					<pluginExecutions>
+        						<pluginExecution>
+        							<pluginExecutionFilter>
+        								<groupId>
+        									org.codehaus.mojo
+        								</groupId>
+        								<artifactId>
+        									gwt-maven-plugin
+        								</artifactId>
+        								<versionRange>
+        									[2.5.1-rc1,)
+        								</versionRange>
+        								<goals>
+        									<goal>generateAsync</goal>
+        								</goals>
+        							</pluginExecutionFilter>
+        							<action>
+        								<ignore></ignore>
+        							</action>
+        						</pluginExecution>
+        					</pluginExecutions>
+        				</lifecycleMappingMetadata>
+        			</configuration>
+        		</plugin>
+        	</plugins>
+        </pluginManagement>
     </build>
 
 
@@ -157,6 +199,14 @@
     </profiles>
 
     <dependencies>
+    
+    	<!-- GWT UI Widgets -->
+    	<dependency>
+		    <groupId>com.github.gwtbootstrap</groupId>
+		    <artifactId>gwt-bootstrap</artifactId>
+		    <version>${gwt.bootstrap}</version>
+		    <scope>provided</scope>
+		</dependency>
 
         <!-- I think GAE dependencies -->
         <!--
@@ -167,7 +217,7 @@
         <dependency>
             <groupId>javax.jdo</groupId>
             <artifactId>jdo2-api</artifactId>
-            <version>2.3-eb</version>
+            <version>${javax.jdo}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.transaction</groupId>
@@ -191,17 +241,17 @@
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-mvp-client</artifactId>
-            <version>1.0-RC-2</version>
+            <version>${gwt.platform}</version>
         </dependency>
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-dispatch-client</artifactId>
-            <version>1.0-RC-2</version>
+            <version>${gwt.platform}</version>
         </dependency>
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-dispatch-server-spring</artifactId>
-            <version>1.0-RC-2</version>
+            <version>${gwt.platform}</version>
         </dependency>
 
         <!-- GWT dependencies -->
@@ -227,19 +277,19 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>1.7.5</version>
+            <version>${gae.version}</version>
         </dependency>
 
         <!-- DI dependencies -->
         <dependency>
             <groupId>com.google.gwt.inject</groupId>
             <artifactId>gin</artifactId>
-            <version>2.0.0</version>
+            <version>${gwt.gin}</version>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
-            <version>2.2</version>
+            <version>${cglib}</version>
         </dependency>
     </dependencies>
 
@@ -257,5 +307,12 @@
             <name>maven-gae-plugin repository</name>
             <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
         </repository>
+        
+        <repository>
+		    <id>sonatype</id>
+		    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		    <snapshots><enabled>true</enabled></snapshots>
+	    	<releases><enabled>false</enabled></releases>
+		</repository>
     </repositories>
 </project>
