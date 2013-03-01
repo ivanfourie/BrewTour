@@ -1,12 +1,8 @@
 .DS_Store
 target/
 .gwt
-.project
-_.project
-.classpath
-.classpath_
-.factorypath
-.factorypath_
 .settings
-bin\
+.project
+.classpath
+.factorypath
 /bin
