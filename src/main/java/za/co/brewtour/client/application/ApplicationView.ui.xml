@@ -41,12 +41,10 @@
 	        <h1>Welcome to Brew Tour!</h1>
 	
 	        <div class="{style.label}">Please enter your name:</div>
-	        <!--  <b:WellForm>  -->
-		        <b:TextBox placeholder="Type something…" ui:field="nameField"/>
-		        <g:HTML ui:field="error" styleName="{style.label-error}"/>
-		        <b:Button type="PRIMARY" ui:field="sendButton">Send</b:Button>
-	        
-	        
+        
+	        <b:TextBox placeholder="Type something…" ui:field="nameField"/>
+	        <g:HTML ui:field="error" styleName="{style.label-error}"/>
+	        <b:Button type="PRIMARY" ui:field="sendButton">Send</b:Button>    
 		
     </g:HTMLPanel>
 </ui:UiBinder>

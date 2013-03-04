@@ -24,9 +24,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
-//import com.google.gwt.user.client.ui.TextBox;
-
-//import com.google.gwt.user.client.ui.Button;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
    public interface Binder extends UiBinder<Widget, ApplicationView> {

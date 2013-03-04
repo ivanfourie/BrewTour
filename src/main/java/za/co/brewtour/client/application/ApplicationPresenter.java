@@ -34,8 +34,6 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
-//import com.google.gwt.user.client.ui.Button;
-
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
    /**
     * {@link ApplicationPresenter}'s proxy.

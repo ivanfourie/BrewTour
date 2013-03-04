@@ -16,42 +16,42 @@
 
 package za.co.brewtour.client.application.response;
 
+import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 
 public class ResponseView extends ViewImpl implements ResponsePresenter.MyView {
-    public interface Binder extends UiBinder<Widget, ResponseView> {
-    }
+   public interface Binder extends UiBinder<Widget, ResponseView> {
+   }
 
-    @UiField
-    HTML textToServer;
-    @UiField
-    HTML serverResponse;
-    @UiField
-    Button closeButton;
+   @UiField
+   HTML textToServer;
+   @UiField
+   HTML serverResponse;
+   @UiField
+   Button closeButton;
 
-    @Inject
-    public ResponseView(final Binder binder) {
-        initWidget(binder.createAndBindUi(this));
-    }
+   @Inject
+   public ResponseView(final Binder binder) {
+      initWidget(binder.createAndBindUi(this));
+   }
 
-    @Override
-    public Button getCloseButton() {
-        return closeButton;
-    }
+   @Override
+   public Button getCloseButton() {
+      return closeButton;
+   }
 
-    @Override
-    public void setServerResponse(String serverResponse) {
-        this.serverResponse.setHTML(serverResponse);
-    }
+   @Override
+   public void setServerResponse(String serverResponse) {
+      this.serverResponse.setHTML(serverResponse);
+   }
 
-    @Override
-    public void setTextToServer(String textToServer) {
-        this.textToServer.setHTML(textToServer);
-    }
+   @Override
+   public void setTextToServer(String textToServer) {
+      this.textToServer.setHTML(textToServer);
+   }
 }
