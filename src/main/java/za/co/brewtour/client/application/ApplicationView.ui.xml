@@ -1,26 +1,35 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+<ui:UiBinder 	xmlns:ui="urn:ui:com.google.gwt.uibinder" 
+				xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+				xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+				xmlns:btui="urn:import:za.co.brewtour.client.application.ui">
     <ui:style>
         .root {
-        width: 500px;
-        margin-left: auto;
-        margin-right: auto;
+	        width: 800px;
+	        margin-left: auto;
+	        margin-right: auto;
         }
 
         .gwtp {
-        margin-bottom: 15px;
+        	margin-bottom: 15px;
         }
 
+        .border {
+			border-bottom: 1px solid #eeeeee;
+		}
+		
         .label {
-        font-weight: bold;
-        }
-
+        	font-weight: bold;
+		}
+	
         .label-error {
-        color: red;
-        }
+			color: red;
+		}
+        
         .{style.browser} {
         }
-    </ui:style>
+	</ui:style>
+    
     <g:HTMLPanel ui:field="container" styleName="{style.root}">
 		
 		
@@ -37,14 +46,51 @@
 			</b:ResponsiveNavbar> 
 			
 			
-			
+			<g:HorizontalPanel height="66px" width="620px" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">			
+	        <g:HTMLPanel>
 	        <h1>Welcome to Brew Tour!</h1>
-	
+
 	        <div class="{style.label}">Please enter your name:</div>
         
 	        <b:TextBox placeholder="Type something…" ui:field="nameField"/>
 	        <g:HTML ui:field="error" styleName="{style.label-error}"/>
-	        <b:Button type="PRIMARY" ui:field="sendButton">Send</b:Button>    
+	        <b:Button type="PRIMARY" ui:field="sendButton">Send</b:Button>
+	        </g:HTMLPanel>
+	        </g:HorizontalPanel>
+	        	        			
+			<!-- Initial beeritem widget for beeritemlist -->
+			<btui:BeerItem 
+				title="Jack Black Lager" 
+				href="http://www.jackblackbeer.com" 
+				description="Our flagship Pre-Prohibition style lager is inspired by the all malt beers of the early 1900s. A traditional lager brewed with a Pale Malt, Southern Promise and Saaz hops, achieves a great balance between hop bitterness and malt sweetness."
+				imageUrl="img/jack_black_lager.jpg"
+				brewery="Jack Black"
+				location="Woodstock, Cape Town"
+				beerStyle="Premium Lager"
+				abv="5%"
+			/>
+				
+			<btui:BeerItem 
+				title="Jack Black Pale Ale" 
+				href="http://www.jackblackbeer.com" 
+				description="An American Style Pale Ale, lighter in body but with a distinctive flavour profile, and a decidedly fresh taste. Refreshing characteristics balanced with rich malt complexity and a bitterness that lingers to the finish."
+				imageUrl="img/jack_black_lager.jpg"
+				brewery="Jack Black"
+				location="Woodstock, Cape Town"
+				beerStyle="Pale Ale"
+				abv="4.5%"
+			/>
+			
+			<btui:BeerItem 
+				title="Jack Black Pils" 
+				href="http://www.jackblackbeer.com" 
+				description="Super clean, white head with a crisp straw yellow colour. Look for fine hop bitterness with fresh citrus notes. The perfect summer thirst quencher."
+				imageUrl="img/jack_black_lager.jpg"
+				brewery="Jack Black"
+				location="Woodstock, Cape Town"
+				beerStyle="Pilsner"
+				abv="5.2%"
+			/>
 		
     </g:HTMLPanel>
 </ui:UiBinder>
