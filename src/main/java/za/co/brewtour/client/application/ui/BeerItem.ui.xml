@@ -50,7 +50,7 @@
 					<b:Column size="6">
 						<b:Paragraph ui:field="description" />
 						<b:Row>
-							<b:Column size="4">
+							<b:Column size="6">
 								<g:HorizontalPanel>
 									<g:Label styleName="{style.label}">Brewery:&nbsp;</g:Label>
 									<g:Label ui:field="brewery" />
