@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/gwt"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/apt"/>
         <property name="context-root" value="brewtour"/>
         <property name="java-output-path" value="/BrewTour_/target/brewtour-1.0-SNAPSHOT/WEB-INF/classes"/>
     </wb-module>

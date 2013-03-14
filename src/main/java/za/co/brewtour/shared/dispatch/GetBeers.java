@@ -15,29 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
+package za.co.brewtour.shared.dispatch;
 
-package za.co.brewtour.client.place;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Generated;
+
+import za.co.brewtour.shared.domain.BeerDto;
+
+import com.gwtplatform.dispatch.annotation.GenDispatch;
+import com.gwtplatform.dispatch.annotation.Out;
 
 /**
- * Main presenters name tokens.
+ * Generates {@code GetBeersAction} and {@code GetBeersResult} classes through annotation.
  * 
- * @author Michael Bester
- * @author Ivan Fourie
+ * @author Ivan.Fourie
  */
-public class NameTokens {
-   public static final String home = "!home";
-   public static final String response = "!response";
-   public static final String beers = "!beers";
-
-   public static String getHome() {
-      return home;
-   }
-
-   public static String getResponse() {
-      return response;
-   }
-
-   public static String getBeerList() {
-      return beers;
-   }
+@GenDispatch(isSecure = false)
+public class GetBeers {
+   @Out(1)
+   List<BeerDto> beerList = new ArrayList<BeerDto>();
 }

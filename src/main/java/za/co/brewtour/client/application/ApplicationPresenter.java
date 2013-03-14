@@ -1,17 +1,19 @@
 /**
- * Copyright 2011 ArcBees Inc.
+ * Copyright (C) 2013 BrewTour
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * 
  */
 
 package za.co.brewtour.client.application;
@@ -21,6 +23,7 @@ import za.co.brewtour.client.place.NameTokens;
 import za.co.brewtour.shared.FieldVerifier;
 
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.NavLink;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.inject.Inject;
@@ -34,6 +37,10 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
+/**
+ * @author Michael Bester
+ * @author Ivan Fourie
+ */
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
    /**
     * {@link ApplicationPresenter}'s proxy.
@@ -50,6 +57,8 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
       String getName();
 
       Button getSendButton();
+
+      NavLink getBeerNavLink();
 
       void resetAndFocus();
 
@@ -74,6 +83,14 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
          public void onClick(ClickEvent event) {
             sendNameToServer();
          }
+      }));
+
+      registerHandler(getView().getBeerNavLink().addClickHandler(new ClickHandler() {
+         @Override
+         public void onClick(ClickEvent event) {
+            openBeerList();
+         }
+
       }));
    }
 
@@ -100,5 +117,13 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
       // call
       placeManager.revealPlace(new PlaceRequest(NameTokens.response).with(ResponsePresenter.textToServerParam,
             textToServer));
+   }
+
+   /**
+    * Open the beer list
+    */
+   private void openBeerList() {
+      placeManager.revealPlace(new PlaceRequest(NameTokens.beers).with("need beer",
+              "please?"));
    }
 }

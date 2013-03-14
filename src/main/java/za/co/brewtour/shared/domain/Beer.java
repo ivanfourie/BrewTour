@@ -15,29 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
+package za.co.brewtour.shared.domain;
 
-package za.co.brewtour.client.place;
+import com.gwtplatform.dispatch.annotation.GenDto;
+import com.gwtplatform.dispatch.annotation.Order;
 
 /**
- * Main presenters name tokens.
+ * Generates BeerDto
  * 
- * @author Michael Bester
- * @author Ivan Fourie
+ * @author Ivan.Fourie
  */
-public class NameTokens {
-   public static final String home = "!home";
-   public static final String response = "!response";
-   public static final String beers = "!beers";
-
-   public static String getHome() {
-      return home;
-   }
-
-   public static String getResponse() {
-      return response;
-   }
-
-   public static String getBeerList() {
-      return beers;
-   }
+@GenDto
+public class Beer {
+   @Order(1)
+   String name;
+   @Order(2)
+   String description;
+   @Order(3)
+   String brewery;
+   @Order(4)
+   String breweryUrl;
+   @Order(5)
+   String location;
+   @Order(6)
+   String beerStyle;
+   @Order(7)
+   String abv;
+   @Order(8)
+   String imageUrl;
 }

@@ -44,6 +44,18 @@
         <!-- Generate compiled stuff in the folder used for developing mode -->
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 
+        <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	        </resource>
+	        <resource>
+	            <directory>${project.build.directory}/generated-sources/apt</directory>
+	        </resource>
+	        <resource>
+	            <directory>${project.build.directory}/generated-sources/gwt</directory>
+	        </resource>
+    	</resources>
+
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -110,6 +122,61 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+            
+            <!-- Run annotation processors on src/home/java sources -->
+		    <plugin>
+		        <groupId>org.bsc.maven</groupId>
+		        <artifactId>maven-processor-plugin</artifactId>
+		        <version>2.1.0</version>
+		        <executions>
+		            <execution>
+		                <id>process</id>
+		                <goals>
+		                    <goal>process</goal>
+		                </goals>
+		                <phase>generate-sources</phase>
+		            </execution>
+		        </executions>
+		        <dependencies>
+		            <dependency>
+		                <groupId>com.gwtplatform</groupId>
+		                <artifactId>gwtp-processors</artifactId>
+		                <version>${gwt.platform}</version>
+		            </dependency>
+		        </dependencies>
+		    </plugin>
+		    <!-- Disable annotation processors during normal compilation -->
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-compiler-plugin</artifactId>
+		      <configuration>
+		        <compilerArgument>-proc:none</compilerArgument>
+		      </configuration>
+		    </plugin>
+		    
+		    <!-- Copy the generated classses -->
+		    <!-- 
+		    <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>build-helper-maven-plugin</artifactId>
+		        <version>1.5</version>
+		        <executions>
+		            <execution>
+		                <id>add-source</id>
+		                <phase>generate-sources</phase>
+		                <goals>
+		                    <goal>add-source</goal>
+		                </goals>
+		                <configuration>
+		                    <sources>
+		                        <source>${project.build.directory}/generated-sources/apt</source>
+		                        <source>${project.build.directory}/generated-sources/gwt</source>
+		                    </sources>
+		                </configuration>
+		            </execution>
+		        </executions>
+		    </plugin>
+		     -->
         </plugins>
         <pluginManagement>
         	<plugins>
@@ -134,6 +201,39 @@
         								</versionRange>
         								<goals>
         									<goal>generateAsync</goal>
+        								</goals>
+        							</pluginExecutionFilter>
+        							<action>
+        								<ignore></ignore>
+        							</action>
+        						</pluginExecution>
+        						
+        						<pluginExecution>
+                                	<pluginExecutionFilter>
+                                    	<groupId>org.bsc.maven</groupId>
+                                    	<artifactId>maven-processor-plugin</artifactId>
+                                    	<versionRange>[2.0.5,)</versionRange>
+                                    	<goals>
+                                        	<goal>generate-sources</goal>
+                                    	</goals>
+                                	</pluginExecutionFilter>
+                                	<action>
+                                    	<execute />
+                                	</action>
+                            	</pluginExecution>
+        						<pluginExecution>
+        							<pluginExecutionFilter>
+        								<groupId>
+        									org.codehaus.mojo
+        								</groupId>
+        								<artifactId>
+        									build-helper-maven-plugin
+        								</artifactId>
+        								<versionRange>
+        									[1.5,)
+        								</versionRange>
+        								<goals>
+        									<goal>add-source</goal>
         								</goals>
         							</pluginExecutionFilter>
         							<action>
@@ -291,6 +391,15 @@
             <artifactId>cglib-nodep</artifactId>
             <version>${cglib}</version>
         </dependency>
+        
+        <!-- Annotation component -->
+ 		<dependency>
+   			<groupId>com.gwtplatform</groupId>
+   			<artifactId>gwtp-processors</artifactId>
+   			<version>${gwt.platform}</version>
+   			<scope>provided</scope>
+ 		</dependency>
+        
     </dependencies>
 
     <pluginRepositories>
