@@ -28,3 +28,4 @@ The current technology stack
 * Host and App Platform - Google App Engine
 * UI - Google Web Toolkit / GWT-Platform / GWT-Bootstrap 
 * IoC container and DI - Spring / Gin
+* Persistence - JDO / Appengine Datastore
