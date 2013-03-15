@@ -11,21 +11,7 @@
             font-weight: bold;
         }
     </ui:style>
-    <g:HTMLPanel styleName="{style.root}">
-    
-    	<!-- TODO: Move to header UI element -->
-			<b:ResponsiveNavbar position="TOP" scrollspy="false" inverse="true">
-				<b:Brand ui:field="brandElement">The BrewTour Project</b:Brand>
-				<b:Nav>
-			        <b:NavLink icon="BEER" ui:field="beerNavLink">Beer</b:NavLink>
-			        <b:NavLink icon="BEAKER" href="#!TODO">Brewery</b:NavLink>
-			        <b:NavLink icon="GLOBE" href="#!TODO">Location</b:NavLink>
-			        <b:NavLink icon="TAG" href="#!TODO">Style</b:NavLink>
-			       
-    			</b:Nav>
-				<b:NavSearch size="3" placeholder="Search" />
-			</b:ResponsiveNavbar>  
-    
+    <g:HTMLPanel styleName="{style.root}">    
         <h1>Awesome List of Delicious Beer</h1>
         
         <div class="{style.label}">Status:</div>

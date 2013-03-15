@@ -84,7 +84,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Paarden Eiland, Cape Town", 
 				              "Pumkpin Ale", 
 				              "5%", 
-				              "img/beer_whale_tale_ale.jpg"));
+				              "img/beer_vanhunks_pumkin_ale.jpg"));
       
       beerList.add(new BeerDto("Naked Mexican", 
 				              "A sparkling, golden lager with a pure white head. Imported malt combined with subtle hop flavours creates a perfect refreshing experience.  A beer that is pure and naked with nothing to hide.", 

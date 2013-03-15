@@ -15,47 +15,62 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.application;
+package za.co.brewtour.client.application.home;
 
 import za.co.brewtour.client.application.header.HeaderView;
 
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 
 /**
  * @author Ivan Fourie
- * @author Michael Bester
  */
-public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
-   public interface Binder extends UiBinder<Widget, ApplicationView> {
+public class HomeView extends ViewImpl implements HomePresenter.MyView {
+   public interface Binder extends UiBinder<Widget, HomeView> {
    }
 
+   @UiField
+   TextBox nameField;
+   @UiField
+   Button sendButton;
+   @UiField
+   HTML error;
    @UiField(provided = true)
    HeaderView header;
-   @UiField
-   SimplePanel main;
 
    @Inject
-   public ApplicationView(final Binder binder, HeaderView header) {
+   public HomeView(final Binder binder, HeaderView header) {
 	   this.header = header;
 	   
 	   initWidget(binder.createAndBindUi(this));
    }
 
-   /*
-    * (non-Javadoc)
-    * @see com.gwtplatform.mvp.client.ViewImpl#setInSlot(java.lang.Object, com.google.gwt.user.client.ui.Widget)
-    */
    @Override
-   public void setInSlot(Object slot, Widget content) {
-       if (content != null) {
-           if (slot == ApplicationPresenter.TYPE_SetMainContent) {
-               main.setWidget(content);
-           }
-       }
+   public String getName() {
+      return nameField.getText();
    }
+
+   @Override
+   public Button getSendButton() {
+      return sendButton;
+   }
+
+   @Override
+   public void resetAndFocus() {
+      // Focus the cursor on the name field when the app loads
+      nameField.setFocus(true);
+      nameField.selectAll();
+   }
+
+   @Override
+   public void setError(String errorText) {
+      error.setText(errorText);
+   }
+
 }

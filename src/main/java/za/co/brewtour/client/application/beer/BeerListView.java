@@ -46,8 +46,6 @@ public class BeerListView extends ViewImpl implements BeerListPresenter.MyView {
    Button closeButton;
    @UiField
    VerticalPanel verticalPanel;
-   @UiField
-   Brand brandElement;
 
    @Inject
    public BeerListView(final Binder binder) {
@@ -80,12 +78,6 @@ public class BeerListView extends ViewImpl implements BeerListPresenter.MyView {
    @Override
    public void setServerResponse(String serverResponse) {
       this.serverResponse.setHTML(serverResponse);
-   }
-
-   //TODO: Move somewhere else
-   @Override
-   public Brand getBrandElement() {
-	   return brandElement;
    }
 
 }

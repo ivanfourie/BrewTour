@@ -16,6 +16,7 @@
 
 package za.co.brewtour.client.application.response;
 
+import za.co.brewtour.client.application.ApplicationPresenter;
 import za.co.brewtour.client.place.NameTokens;
 import za.co.brewtour.shared.dispatch.SendTextToServerAction;
 import za.co.brewtour.shared.dispatch.SendTextToServerResult;
@@ -66,7 +67,7 @@ public class ResponsePresenter extends Presenter<ResponsePresenter.MyView, Respo
    @Inject
    public ResponsePresenter(EventBus eventBus, MyView view, MyProxy proxy, PlaceManager placeManager,
          DispatchAsync dispatcher) {
-      super(eventBus, view, proxy, RevealType.Root);
+      super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
 
       this.placeManager = placeManager;
       this.dispatcher = dispatcher;

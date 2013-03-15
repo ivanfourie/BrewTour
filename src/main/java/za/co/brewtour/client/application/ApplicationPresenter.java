@@ -18,112 +18,36 @@
 
 package za.co.brewtour.client.application;
 
-import za.co.brewtour.client.application.response.ResponsePresenter;
-import za.co.brewtour.client.place.NameTokens;
-import za.co.brewtour.shared.FieldVerifier;
-
-import com.github.gwtbootstrap.client.ui.Button;
-import com.github.gwtbootstrap.client.ui.NavLink;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.ContentSlot;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
-import com.gwtplatform.mvp.client.proxy.Place;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
-import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.Proxy;
+import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 
 /**
- * @author Michael Bester
  * @author Ivan Fourie
+ * @author Michael Bester
  */
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
-   /**
+	public interface MyView extends View {
+    }
+	
+	@ContentSlot
+    public static final Type<RevealContentHandler<?>> TYPE_SetMainContent = new Type<RevealContentHandler<?>>();
+	
+	/**
     * {@link ApplicationPresenter}'s proxy.
     */
-   @ProxyStandard
-   @NameToken(NameTokens.home)
-   public interface MyProxy extends Proxy<ApplicationPresenter>, Place {
-   }
+	@ProxyStandard
+	public interface MyProxy extends Proxy<ApplicationPresenter> {
+	}
 
-   /**
-    * {@link ApplicationPresenter}'s view.
-    */
-   public interface MyView extends View {
-      String getName();
-
-      Button getSendButton();
-
-      NavLink getBeerNavLink();
-
-      void resetAndFocus();
-
-      void setError(String errorText);
-   }
-
-   private final PlaceManager placeManager;
-
-   @Inject
-   public ApplicationPresenter(EventBus eventBus, MyView view, MyProxy proxy, PlaceManager placeManager) {
-      super(eventBus, view, proxy, RevealType.Root);
-
-      this.placeManager = placeManager;
-   }
-
-   @Override
-   protected void onBind() {
-      super.onBind();
-
-      registerHandler(getView().getSendButton().addClickHandler(new ClickHandler() {
-         @Override
-         public void onClick(ClickEvent event) {
-            sendNameToServer();
-         }
-      }));
-
-      registerHandler(getView().getBeerNavLink().addClickHandler(new ClickHandler() {
-         @Override
-         public void onClick(ClickEvent event) {
-            openBeerList();
-         }
-
-      }));
-   }
-
-   @Override
-   protected void onReset() {
-      super.onReset();
-
-      getView().resetAndFocus();
-   }
-
-   /**
-    * Send the name from the nameField to the server and wait for a response.
-    */
-   private void sendNameToServer() {
-      // First, we validate the input.
-      getView().setError("");
-      String textToServer = getView().getName();
-      if (!FieldVerifier.isValidName(textToServer)) {
-         getView().setError("Please enter at least four characters");
-         return;
-      }
-
-      // Then, we transmit it to the ResponsePresenter, which will do the server
-      // call
-      placeManager.revealPlace(new PlaceRequest(NameTokens.response).with(ResponsePresenter.textToServerParam,
-            textToServer));
-   }
-
-   /**
-    * Open the beer list
-    */
-   private void openBeerList() {
-      placeManager.revealPlace(new PlaceRequest(NameTokens.beers).with("need beer",
-              "please?"));
-   }
+	@Inject
+	public ApplicationPresenter(final EventBus eventBus, final MyView view, final MyProxy proxy) {
+		super(eventBus, view, proxy, RevealType.Root);
+	}
 }

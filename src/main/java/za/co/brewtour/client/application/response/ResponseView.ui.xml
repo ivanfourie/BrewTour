@@ -11,18 +11,7 @@
             font-weight: bold;
         }
     </ui:style>
-    <g:HTMLPanel styleName="{style.root}">
-    
-    	<b:ResponsiveNavbar position="TOP" scrollspy="false" inverse="true">
-				<b:Brand>The BrewTour Project</b:Brand>
-				<b:Nav>
-			        <b:NavLink icon="BEER" href="#beer">Beer</b:NavLink>
-			        <b:NavLink icon="BEAKER" href="#brewery">Brewery</b:NavLink>
-			        <b:NavLink icon="GLOBE" href="#location">Location</b:NavLink>
-			        <b:NavLink icon="TAG" href="#style">Style</b:NavLink>
-    			</b:Nav>
-				<b:NavSearch size="3" placeholder="Search" />
-		</b:ResponsiveNavbar> 
+    <g:HTMLPanel styleName="{style.root}"> 
     
         <h1>Remote Procedure Call</h1>
         

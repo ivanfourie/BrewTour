@@ -15,28 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.application;
+package za.co.brewtour.client.application.home;
 
-import za.co.brewtour.client.application.beer.BeerListModule;
-import za.co.brewtour.client.application.header.HeaderModule;
-import za.co.brewtour.client.application.home.HomeModule;
+import za.co.brewtour.client.application.response.ResponsePresenter;
+import za.co.brewtour.client.application.response.ResponseView;
+
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 /**
  * @author Ivan Fourie
- * @author Michael Bester
  */
-public class ApplicationModule extends AbstractPresenterModule {
+public class HomeModule extends AbstractPresenterModule {
 
    @Override
    protected void configure() {
-	  // Install modules
-	  install(new HeaderModule());
-	  install(new HomeModule());
-	  install(new BeerListModule());
 	   
       // Application Presenter
-      bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-            ApplicationPresenter.MyProxy.class);
+      bindPresenter(HomePresenter.class, HomePresenter.MyView.class, HomeView.class,
+            HomePresenter.MyProxy.class);
+
+      bindPresenter(ResponsePresenter.class, ResponsePresenter.MyView.class, ResponseView.class,
+            ResponsePresenter.MyProxy.class);
    }
 }

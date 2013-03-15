@@ -20,6 +20,7 @@ package za.co.brewtour.client.application.beer;
 
 import java.util.List;
 
+import za.co.brewtour.client.application.ApplicationPresenter;
 import za.co.brewtour.client.place.NameTokens;
 import za.co.brewtour.shared.dispatch.GetBeersAction;
 import za.co.brewtour.shared.dispatch.GetBeersResult;
@@ -64,7 +65,6 @@ public class BeerListPresenter extends Presenter<BeerListPresenter.MyView, BeerL
       
       void setBeerList(List<BeerDto> beerList);
       
-      Brand getBrandElement();
    }
 
    private final DispatchAsync dispatcher;
@@ -75,7 +75,7 @@ public class BeerListPresenter extends Presenter<BeerListPresenter.MyView, BeerL
    @Inject
    public BeerListPresenter(EventBus eventBus, MyView view, MyProxy proxy, PlaceManager placeManager,
          DispatchAsync dispatcher) {
-      super(eventBus, view, proxy, RevealType.Root);
+      super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
 
       this.placeManager = placeManager;
       this.dispatcher = dispatcher;
@@ -89,15 +89,6 @@ public class BeerListPresenter extends Presenter<BeerListPresenter.MyView, BeerL
    @Override
    protected void onBind() {
       super.onBind();
-      
-      // TODO: Move this somewhere else
-      registerHandler(getView().getBrandElement().addClickHandler(new ClickHandler() {
-          @Override
-          public void onClick(ClickEvent event) {
-             placeManager.revealPlace(new PlaceRequest(NameTokens.getHome()));
-          }
-       }));
-      
       
       registerHandler(getView().getCloseButton().addClickHandler(new ClickHandler() {
          @Override
