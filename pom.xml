@@ -39,9 +39,13 @@
         <cglib>2.2</cglib>
         <javax.jdo>2.3-eb</javax.jdo>
         <gwt.bootstrap>2.2.1.0-SNAPSHOT</gwt.bootstrap>
+<<<<<<< HEAD
 		
 		<maven-processor-plugin.version>2.0.5</maven-processor-plugin.version>
         <maven-build-helper-plugin.version>1.7</maven-build-helper-plugin.version>
+=======
+        <junit.version>4.11</junit.version>
+>>>>>>> First Entity committed, with some tests of the DataStore as well as PersistenceManger
     </properties>
 
     <build>
@@ -78,7 +82,7 @@
                 </executions>
             </plugin>
 
-			
+
             <plugin>
                 <groupId>net.kindleit</groupId>
                 <artifactId>maven-gae-plugin</artifactId>
@@ -87,7 +91,7 @@
                     <splitJars>true</splitJars>
                 </configuration>
             </plugin>
- 			
+
             <!--
                 Upload application to the appspot automatically, during
                 release:perform
@@ -127,6 +131,7 @@
                     <proc>none</proc>
                 </configuration>
             </plugin>
+<<<<<<< HEAD
 			
 			<!-- Run annotation processors on src/home/java sources -->
             <plugin>
@@ -228,6 +233,97 @@
         			</configuration>
         		</plugin>
         	</plugins>
+=======
+
+            <!--
+                This plug-in "enhances" your domain model objects (i.e.
+                makes them persistent for datanucleus)
+            -->
+            <plugin>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>maven-datanucleus-plugin</artifactId>
+                <version>1.1.4</version>
+                <configuration>
+                    <!--
+                        Make sure this path contains your persistent
+                        classes! You can have multiple path filters here
+                        separated by commas.
+                    -->
+                    <mappingIncludes>**/server/entity/*</mappingIncludes>
+                    <verbose>true</verbose>
+                    <enhancerName>ASM</enhancerName>
+                    <api>JDO</api>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.datanucleus</groupId>
+                        <artifactId>datanucleus-core</artifactId>
+                        <version>1.1.5</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>javax.transaction</groupId>
+                                <artifactId>transaction-api</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.datanucleus</groupId>
+                        <artifactId>datanucleus-rdbms</artifactId>
+                        <version>1.1.5</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.datanucleus</groupId>
+                        <artifactId>datanucleus-enhancer</artifactId>
+                        <version>1.1.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            gwt-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [2.5.1-rc1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>generateAsync</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+>>>>>>> First Entity committed, with some tests of the DataStore as well as PersistenceManger
         </pluginManagement>
     </build>
 
@@ -282,16 +378,7 @@
     </profiles>
 
     <dependencies>
-    
-    	<!-- GWT UI Widgets -->
-    	<dependency>
-		    <groupId>com.github.gwtbootstrap</groupId>
-		    <artifactId>gwt-bootstrap</artifactId>
-		    <version>${gwt.bootstrap}</version>
-		    <scope>provided</scope>
-		</dependency>
 
-        <!-- I think GAE dependencies -->
         <!--
             jars from GAE's "lib/user" must be added as compile-time
             dependencies, as described here in "Copying JARs" section:
@@ -300,7 +387,36 @@
         <dependency>
             <groupId>javax.jdo</groupId>
             <artifactId>jdo2-api</artifactId>
-            <version>${javax.jdo}</version>
+            <version>2.3-eb</version>
+            <exclusions>
+                <!--
+                    exclude the legacy javax.transaction:transaction-api
+                    and replace it with javax.transaction:jta (it
+                    appears to be the same thing)
+                -->
+                <exclusion>
+                    <groupId>javax.transaction</groupId>
+                    <artifactId>transaction-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.appengine.orm</groupId>
+            <artifactId>datanucleus-appengine</artifactId>
+            <version>1.0.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-core</artifactId>
+            <version>1.1.5</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.transaction</groupId>
@@ -309,15 +425,60 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>datanucleus-jpa</artifactId>
+            <version>1.1.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>geronimo-jpa_3.0_spec</artifactId>
+            <version>1.1.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+
+        <!-- Testing Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!--
-        GAE libraries for local testing as described here:
-        http://code.google.com/appengine/docs/java/howto/unittesting.html
+            GAE libraries for local testing as described here:
+            http://code.google.com/appengine/docs/java/howto/unittesting.html
         -->
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-labs</artifactId>
             <version>${gae.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-stubs</artifactId>
+            <version>${gae.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-testing</artifactId>
+            <version>${gae.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- GWT UI Widgets -->
+        <dependency>
+            <groupId>com.github.gwtbootstrap</groupId>
+            <artifactId>gwt-bootstrap</artifactId>
+            <version>${gwt.bootstrap}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- GWTP -->
@@ -399,12 +560,16 @@
             <name>maven-gae-plugin repository</name>
             <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
         </repository>
-        
+
         <repository>
-		    <id>sonatype</id>
-		    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		    <snapshots><enabled>true</enabled></snapshots>
-	    	<releases><enabled>false</enabled></releases>
-		</repository>
+            <id>sonatype</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
     </repositories>
 </project>
