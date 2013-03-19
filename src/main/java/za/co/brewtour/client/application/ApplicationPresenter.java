@@ -29,6 +29,10 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 
 /**
+ * Main application presenter. Provides a content slot in which other views can be 
+ * revealed in via the corresponding presenter using 
+ * {@code ApplicationPresenter.TYPE_SetMainContent} instead of RevealType.Root
+ * 
  * @author Ivan Fourie
  * @author Michael Bester
  */

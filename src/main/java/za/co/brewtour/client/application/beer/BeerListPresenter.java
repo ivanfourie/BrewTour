@@ -26,7 +26,6 @@ import za.co.brewtour.shared.dispatch.GetBeersAction;
 import za.co.brewtour.shared.dispatch.GetBeersResult;
 import za.co.brewtour.shared.domain.BeerDto;
 
-import com.github.gwtbootstrap.client.ui.Brand;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;

@@ -33,7 +33,7 @@ import com.gwtplatform.dispatch.server.actionhandler.AbstractActionHandler;
 import com.gwtplatform.dispatch.shared.ActionException;
 
 /**
- * Handler to fetch a list of beers
+ * Handler to fetch a list of beers. Binds to {@code GetBeersAction.class} in ctor.
  * 
  * @author Ivan Fourie
  */

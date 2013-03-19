@@ -23,6 +23,8 @@ import za.co.brewtour.client.application.home.HomeModule;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 /**
+ * Main application module.
+ * 
  * @author Ivan Fourie
  * @author Michael Bester
  */

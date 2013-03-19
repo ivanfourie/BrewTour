@@ -21,6 +21,8 @@ package za.co.brewtour.client.place;
 /**
  * Main presenters name tokens.
  * 
+ * Tokens starts with bang operator (!) for AJAX SEO
+ * 
  * @author Michael Bester
  * @author Ivan Fourie
  */

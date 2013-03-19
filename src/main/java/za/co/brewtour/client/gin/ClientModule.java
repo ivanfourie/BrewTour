@@ -17,7 +17,6 @@
  */
 package za.co.brewtour.client.gin;
 
-import com.google.gwt.core.client.GWT;
 import com.gwtplatform.dispatch.client.gin.DispatchAsyncModule;
 import com.gwtplatform.mvp.client.annotations.DefaultPlace;
 import com.gwtplatform.mvp.client.annotations.ErrorPlace;
@@ -28,6 +27,9 @@ import com.gwtplatform.mvp.client.proxy.DefaultPlaceManager;
 import za.co.brewtour.client.application.ApplicationModule;
 import za.co.brewtour.client.place.NameTokens;
 /**
+ * Entry point client module. Installs application modules and UI components 
+ * through DI.
+ * 
  * @author Michael Bester
  * @author Ivan Fourie
  */
@@ -35,12 +37,10 @@ public class ClientModule extends AbstractPresenterModule {
 
     @Override
     protected void configure() {
-    	GWT.log("GIN: Installing modules");
         install(new DefaultModule(DefaultPlaceManager.class));
         install(new DispatchAsyncModule());
         install(new ApplicationModule());
         
-        GWT.log("GIN: Installing modules");
         // DefaultPlaceManager Places
         bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
         bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.home);

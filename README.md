@@ -40,17 +40,17 @@ Project Structure
 BrewTour has a client component based on Google Web Toolkit (GWT) and a server component that are serlvets running in the Spring container. These components are glued together via the GWT Platform (GWTP) by making use of the command pattern (handlers, dispatcher, actions, result) and the model-view-presenter pattern. 
 
 ### Entry points
-Since BrewTour makes use of Dependecy Injection frameworks - Gin for the client and Spring for server - the following two modules act as entry points:
+Since BrewTour makes use of Dependency Injection frameworks - Gin for the client and Spring for server - the following two modules act as entry points:
 ```
 za
- co
-  brewtour
-   client
-    gin
-     ClientModule.java // Module installs other modules and configures the client
-   server
-    spring
-     ServerModule.java // Module that binds handlers and configures the server
+└───co
+    └───brewtour
+        ├───client
+        │   └───gin
+        │       └───ClientModule.java // Module installs other modules and configures the client
+        └───server
+            └───spring
+                └───ServerModule.java // Module that binds handlers and configures the server     
 ```
 
 ### Communication
@@ -58,16 +58,19 @@ BrewTour makes use of GWT-RPC and the command pattern for client-server communic
 
 ```
 za
- co
-  brewtour
-   shared
-    dispatch // Actions and Results shared by server and client
-     GetBeers.java // auto-generates GetBeersAction.java and GetBeersResult.java by using @GenDispatch annotation
-     ...
-    domain // business objects that generate DTOs
-     Beer.java // Simple class that generates BeerDto.java by using @GenDto annotation
-	 ...
-   server
-    spring
-     ServerModule.java // Module that binds handlers and configures the server
+└───co
+    └───brewtour
+        ├───client
+        │   └───application
+        │       └───beer
+        │           └───BeerListPresenter.java // Presenter that dispatches GetBeerAction to GetBeersHandler via RPC
+        ├───server
+        │   └───dispatch
+        │       └───GetBeersHandler.java // Handler that handles GetBeersAction and returns GetBeersResult
+        └───shared
+            ├───dispatch /* Actions and Results shared by server and client */
+            │   └───GetBeers.java // auto-generates GetBeersAction.java and GetBeersResult.java by using @GenDispatch annotation
+            └───domain /* Domain objects shared by server and client */
+                └───Beer.java // Simple class that generates BeerDto.java by using @GenDto annotation
+
 ```

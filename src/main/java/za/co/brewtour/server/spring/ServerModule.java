@@ -38,7 +38,7 @@ import com.gwtplatform.dispatch.server.spring.actionvalidator.DefaultActionValid
 import com.gwtplatform.dispatch.server.spring.configuration.DefaultModule;
 
 /**
- * Module which binds the handlers and configurations.
+ * Entry point server module that binds the handlers and configurations.
  * 
  * @author Michael Bester
  * @author Ivan Fourie
