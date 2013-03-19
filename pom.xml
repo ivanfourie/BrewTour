@@ -73,11 +73,16 @@
 		<!-- Produce detailed JS during GWT compilation for development environment -->
 		<gwt.style>DETAILED</gwt.style>
 
-		<gwt.platform>1.0-RC-2</gwt.platform>
-		<gwt.gin>2.0.0</gwt.gin>
-		<cglib>2.2</cglib>
-		<javax.jdo>2.3-eb</javax.jdo>
-		<gwt.bootstrap>2.2.1.0-SNAPSHOT</gwt.bootstrap>
+		<gwt-platform.version>1.0-RC-2</gwt-platform.version>
+		<gin.version>2.0.0</gin.version>
+		<cglib.version>2.2</cglib.version>
+		<jdo.version>2.3-eb</jdo.version>
+		<gwt-bootstrap.version>2.2.1.0-SNAPSHOT</gwt-bootstrap.version>
+		<junit.version>4.8.1</junit.version>
+		
+		<!-- JVM version -->
+		<jvm-source.version>1.6</jvm-source.version>
+		<jvm-destination.version>1.6</jvm-destination.version>
 
 		<maven-processor-plugin.version>2.0.5</maven-processor-plugin.version>
 		<maven-build-helper-plugin.version>1.7</maven-build-helper-plugin.version>
@@ -643,8 +648,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${jvm-source.version}</source>
+					<target>${jvm-destination.version}</target>
 					<!-- Disable annotation processors during normal compilation -->
 					<proc>none</proc>
 				</configuration>
@@ -798,7 +803,7 @@
 		<dependency>
 			<groupId>com.github.gwtbootstrap</groupId>
 			<artifactId>gwt-bootstrap</artifactId>
-			<version>${gwt.bootstrap}</version>
+			<version>${gwt-bootstrap.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -808,7 +813,7 @@
 		<dependency>
 			<groupId>javax.jdo</groupId>
 			<artifactId>jdo2-api</artifactId>
-			<version>${javax.jdo}</version>
+			<version>${jdo.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.transaction</groupId>
@@ -829,17 +834,17 @@
 		<dependency>
 			<groupId>com.gwtplatform</groupId>
 			<artifactId>gwtp-mvp-client</artifactId>
-			<version>${gwt.platform}</version>
+			<version>${gwt-platform.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.gwtplatform</groupId>
 			<artifactId>gwtp-dispatch-client</artifactId>
-			<version>${gwt.platform}</version>
+			<version>${gwt-platform.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.gwtplatform</groupId>
 			<artifactId>gwtp-dispatch-server-spring</artifactId>
-			<version>${gwt.platform}</version>
+			<version>${gwt-platform.version}</version>
 		</dependency>
 
 		<!-- GWT dependencies -->
@@ -872,19 +877,19 @@
 		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
-			<version>${gwt.gin}</version>
+			<version>${gin.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
-			<version>${cglib}</version>
+			<version>${cglib.version}</version>
 		</dependency>
 
 		<!-- Annotation component -->
 		<dependency>
 			<groupId>com.gwtplatform</groupId>
 			<artifactId>gwtp-processors</artifactId>
-			<version>${gwt.platform}</version>
+			<version>${gwt-platform.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -892,7 +897,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
