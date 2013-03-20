@@ -24,6 +24,8 @@ import javax.jdo.JDOException;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.Transaction;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -115,22 +117,37 @@ public class EntityDataStoreTest {
 
     @Test
     public void updateBeerEntity() {
+    	
+    	// We need two transactions, one to create the beer and the second to update it
+    	Transaction tx = pm.currentTransaction();
         Beer beer = new Beer("Jack Black Lager", "Something nice", "Jack Black", new Date(), "5", "Pale Lager", "url:url");
 
+        // begin insert transaction
+        tx.begin();
+        
         //First persist an object:
         pm.makePersistent(beer);
-        Beer detachedBeer = pm.detachCopy(beer);
+        // Commit insert transaction, flushing the object to the datastore
+        tx.commit();
+        
+        // begin update transaction
+        tx.begin();
+        //Beer detachedBeer = pm.detachCopy(beer);
+        Beer jackBlackBeer = pm.getObjectById(Beer.class, beer.getKey());
+        Beer detachedBeer = pm.detachCopy(jackBlackBeer);
         //Update the object and persist it:
         detachedBeer.setBeerName("Pale Ale");
+        
         pm.makePersistent(detachedBeer);
+        // Commit update transaction 
+        tx.commit();
 
         try {
             Query query = pm.newQuery(Beer.class);
             List<Beer> beerEntities = (List<Beer>) query.execute();
 
             assertTrue("Should only have one entity persisted", beerEntities.size() == 1);
-            //This is one BIG problem we are looking at... It doesn't seem that the updated entity is actually being persisted.
-            //assertTrue("Beer name should have been updated", beerEntities.get(0).getBeerName().equals("Pale Ale"));
+            assertTrue("Beer name should have been updated", beerEntities.get(0).getBeerName().equals("Pale Ale"));
         } catch (JDOException e) {
             fail();
         }
