@@ -66,7 +66,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Cape Town", 
 				              "Strong Lager", 
 				              "6.5%", 
-				              "img/beer_beast_of_the_deep.png"));
+				              "static/beer_beast_of_the_deep.png"));
       
       beerList.add(new BeerDto("Whale Tale Ale", 
 				              "Whale Tale Ale  has a toffee character with a hint of caramel - an unmistakably unique flavour. Hallertauer hops ensures a clean refined finish. If, like me, you're wanting more from your beer, this will become your regular. Available in draught &amp; 340ml bottles.", 
@@ -75,7 +75,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Paarden Eiland, Cape Town", 
 				              "Amber Ale", 
 				              "3.5%", 
-				              "img/beer_whale_tale_ale.jpg"));
+				              "static/beer_whale_tale_ale.jpg"));
       
       beerList.add(new BeerDto("Van Hunks Pumpkin Ale", 
 				              "This unique blend of pumpkin, coriander, butternut, cinnamon and nutmeg is a complexed mix full with flavour. Its a rich blend of unusual ingredients that leave you wanting more.", 
@@ -84,7 +84,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Paarden Eiland, Cape Town", 
 				              "Pumkpin Ale", 
 				              "5%", 
-				              "img/beer_vanhunks_pumkin_ale.jpg"));
+				              "static/beer_vanhunks_pumkin_ale.jpg"));
       
       beerList.add(new BeerDto("Naked Mexican", 
 				              "A sparkling, golden lager with a pure white head. Imported malt combined with subtle hop flavours creates a perfect refreshing experience.  A beer that is pure and naked with nothing to hide.", 
@@ -93,7 +93,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Paarden Eiland, Cape Town", 
 				              "Pale Lager", 
 				              "4.5%", 
-				              "img/beer_naked_mexican.jpg"));
+				              "static/beer_naked_mexican.jpg"));
       
       beerList.add(new BeerDto("Johnny Gold Weiss", 
 				              "Johnny Gold Weiss is slightly sweet and fruity, with a full body. It has a typical hefeweizen taste produced by Bavarian yeast. Strong clove and banana flavours with hints of vanilla. Johnny Gold Weiss is very lightly hopped leaving almost no bitterness. Bottle conditioning gives it a typical cloudy appearance.", 
@@ -102,7 +102,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Paarden Eiland, Cape Town", 
 				              "Hefeweizen", 
 				              "5%", 
-				              "img/beer_johnny_gold_weiss.jpg"));
+				              "static/beer_johnny_gold_weiss.jpg"));
       
       beerList.add(new BeerDto("Hazzard Ten Ale", 
 				              "If you're a fizzy yellow beer drinker this is definitely not for you. With an alcohol content of 10% it is the strongest beer brewed in South Africa, the most defining character however is it's flavour. It is dark red in colour, has a thick creamy head, and a strong malty character. The sweetness has been balanced by adding large amounts of hops to the beer after fermentation, a process called dry hopping. It's definitely the beer that is the most fun to make.", 
@@ -111,7 +111,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
 				              "Paarden Eiland, Cape Town", 
 				              "American Strong Ale", 
 				              "10%", 
-				              "img/beer_hazzard_ten_ale.jpg"));
+				              "static/beer_hazzard_ten_ale.jpg"));
       
       beerList.add(new BeerDto("Boston Premium Lager", 
                                "The first of the Boston Range, a deliciously crafted Premium Lager boasting a golden malty character that is masterfully balanced using four hop varieties. Crystal Malt creates the unmistakable malty body. A unique blend of Saaz and Hallertauer hops guarantees a fresh, crisp finish. Special lager yeast produces a long lasting, smooth aftertaste. With a crisp refreshing finish this beer goes down well served chilled on a hot day!", 
@@ -120,7 +120,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
                                "Paarden Eiland, Cape Town", 
                                "Premium Lager", 
                                "4%", 
-                               "img/beer_boston_premium_lager.jpg"));
+                               "static/beer_boston_premium_lager.jpg"));
       
       beerList.add(new BeerDto("Jack Black Lager", 
                               "Our flagship Pre-Prohibition style lager is inspired by the all malt beers of the early 1900s. A traditional lager brewed with a Pale Malt, Southern Promise and Saaz hops, achieves a great balance between hop bitterness and malt sweetness.", 
@@ -129,7 +129,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
                               "Woodstock, Cape Town", 
                               "Premium Lager", 
                               "5%", 
-                              "img/beer_jack_black_lager.jpg"));
+                              "static/beer_jack_black_lager.jpg"));
       
       beerList.add(new BeerDto("Jack Black Pils", 
                                "Super clean, white head with a crisp straw yellow colour. Look for fine hop bitterness with fresh citrus notes. The perfect summer thirst quencher.", 
@@ -138,7 +138,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
                                "Woodstock, Cape Town", 
                                "Pilsner", 
                                "5.2%", 
-                               "img/beer_jack_black_lager.jpg")); 
+                               "static/beer_jack_black_lager.jpg")); 
       
       beerList.add(new BeerDto("Jack Black Pale Ale", 
                                "An American Style Pale Ale, lighter in body but with a distinctive flavour profile, and a decidedly fresh taste. Refreshing characteristics balanced with rich malt complexity and a bitterness that lingers to the finish.", 
@@ -147,7 +147,7 @@ public class GetBeersHandler extends AbstractActionHandler<GetBeersAction, GetBe
                                "Woodstock, Cape Town", 
                                "Pale Ale", 
                                "4.5", 
-                               "img/beer_jack_black_lager.jpg")); 
+                               "static/beer_jack_black_lager.jpg")); 
      
       
       return beerList;

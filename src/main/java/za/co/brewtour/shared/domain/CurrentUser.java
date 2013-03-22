@@ -15,23 +15,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.shared.dispatch;
+package za.co.brewtour.shared.domain;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-import za.co.brewtour.shared.domain.BeerDto;
-
-import com.gwtplatform.dispatch.annotation.GenDispatch;
-import com.gwtplatform.dispatch.annotation.Out;
-
 /**
- * Generates {@code GetBeersAction} and {@code GetBeersResult} classes through annotation.
- * 
  * @author Ivan.Fourie
  */
-@GenDispatch(isSecure = false)
-public class GetBeers {
-   @Out(1)
-   List<BeerDto> beerList = new ArrayList<BeerDto>();
+public class CurrentUser implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	private String username;
+	private List<String> roles;
+
+	public CurrentUser() {
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

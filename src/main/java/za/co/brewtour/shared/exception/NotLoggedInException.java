@@ -15,23 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.shared.dispatch;
+package za.co.brewtour.shared.exception;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-import za.co.brewtour.shared.domain.BeerDto;
-
-import com.gwtplatform.dispatch.annotation.GenDispatch;
-import com.gwtplatform.dispatch.annotation.Out;
+import com.gwtplatform.dispatch.shared.ActionException;
 
 /**
- * Generates {@code GetBeersAction} and {@code GetBeersResult} classes through annotation.
+ * Thrown when a user attempts an action that requires the user to be logged in.
  * 
- * @author Ivan.Fourie
+ * @author Ivan Fourie
  */
-@GenDispatch(isSecure = false)
-public class GetBeers {
-   @Out(1)
-   List<BeerDto> beerList = new ArrayList<BeerDto>();
+public class NotLoggedInException extends ActionException implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public NotLoggedInException() {
+		super();
+	}
+
+	public NotLoggedInException(String message) {
+		super(message);
+	}
 }

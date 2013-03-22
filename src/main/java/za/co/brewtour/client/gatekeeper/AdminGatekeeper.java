@@ -15,23 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.shared.dispatch;
+package za.co.brewtour.client.gatekeeper;
 
-import java.util.ArrayList;
-import java.util.List;
+import za.co.brewtour.shared.domain.CurrentUser;
 
-import za.co.brewtour.shared.domain.BeerDto;
-
-import com.gwtplatform.dispatch.annotation.GenDispatch;
-import com.gwtplatform.dispatch.annotation.Out;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.proxy.Gatekeeper;
 
 /**
- * Generates {@code GetBeersAction} and {@code GetBeersResult} classes through annotation.
+ * Gatekeeper for administration places
  * 
- * @author Ivan.Fourie
+ * @author Ivan Fourie
  */
-@GenDispatch(isSecure = false)
-public class GetBeers {
-   @Out(1)
-   List<BeerDto> beerList = new ArrayList<BeerDto>();
+public class AdminGatekeeper implements Gatekeeper {
+	
+	private final CurrentUser currentUser;
+	
+	@Inject
+    public AdminGatekeeper(final CurrentUser currentUser) {
+            this.currentUser = currentUser;
+    }
+    
+	/* (non-Javadoc)
+	 * @see com.gwtplatform.mvp.client.proxy.Gatekeeper#canReveal()
+	 */
+	@Override
+	public boolean canReveal() {
+		return currentUser.getRoles().contains("ROLE_ADMIN");
+	}
+
 }
