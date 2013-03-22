@@ -27,19 +27,24 @@ package za.co.brewtour.client.place;
  * @author Ivan Fourie
  */
 public class NameTokens {
-   public static final String home = "!home";
-   public static final String response = "!response";
-   public static final String beers = "!beers";
+	public static final String home = "!home";
+	public static final String response = "!response";
+	public static final String beers = "!beers";
+	public static final String beerAdmin = "!beer-admin";
 
-   public static String getHome() {
-      return home;
-   }
+	public static String getHome() {
+		return home;
+	}
 
-   public static String getResponse() {
-      return response;
-   }
+	public static String getResponse() {
+		return response;
+	}
 
-   public static String getBeerList() {
-      return beers;
-   }
+	public static String getBeerList() {
+		return beers;
+	}
+
+	public static String getBeerAdmin() {
+		return beerAdmin;
+	}
 }

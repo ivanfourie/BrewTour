@@ -20,8 +20,15 @@
 			        <b:NavLink icon="GLOBE" href="#!TODO">Location</b:NavLink>
 			        <b:NavLink icon="TAG" href="#!TODO">Style</b:NavLink>
 			     -->
+			     
+			     
     			</b:Nav>
-				<b:NavSearch size="3" placeholder="Search" />
+				<!-- <b:NavSearch size="3" placeholder="Search" />  -->
+				<b:Nav ui:field="admin" alignment="RIGHT">
+					<b:Dropdown text="Admin">
+						<b:NavLink ui:field="beerAdmin">Beers</b:NavLink>
+					</b:Dropdown>
+				</b:Nav>
 			</b:ResponsiveNavbar>  
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -18,6 +18,8 @@
 	
 	<inherits name="com.github.gwtbootstrap.Bootstrap"/>
 	
+	<inherits name='com.github.gwtbootstrap.datepicker.Datepicker' />
+	
     <!-- Specify the paths for translatable code                    -->
     <source path='client'/>
     <source path='shared'/>
