@@ -16,7 +16,7 @@
  * 
  */
 
-package za.co.brewtour.client.application.admin;
+package za.co.brewtour.client.application.admin.beer;
 
 import za.co.brewtour.client.application.ApplicationPresenter;
 import za.co.brewtour.client.application.response.ResponsePresenter;

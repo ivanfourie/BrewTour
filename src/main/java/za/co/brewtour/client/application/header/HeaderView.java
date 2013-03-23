@@ -58,6 +58,8 @@ public class HeaderView extends Composite {
 	NavLink beer;
 	@UiField
 	NavLink beerAdmin;
+	@UiField
+	NavLink imageAdmin;
 	
 	@Inject
 	public HeaderView(final Binder binder, PlaceManager placeManager) {
@@ -78,5 +80,10 @@ public class HeaderView extends Composite {
 	@UiHandler("beerAdmin")
 	void onBeerAdminClick(ClickEvent event) {
 		placeManager.revealPlace(new PlaceRequest(NameTokens.beerAdmin));
+	}
+	
+	@UiHandler("imageAdmin")
+	void onImageAdminClick(ClickEvent event) {
+		placeManager.revealPlace(new PlaceRequest(NameTokens.imageAdmin));
 	}
 }

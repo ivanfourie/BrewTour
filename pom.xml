@@ -39,8 +39,10 @@
 		<gwt-platform.version>1.0-RC-2</gwt-platform.version>
 		<gin.version>2.0.0</gin.version>
 		<gwt-bootstrap.version>2.2.1.0-SNAPSHOT</gwt-bootstrap.version>
-		<gwtupload.version>0.6.6</gwtupload.version>
-		
+
+		<!-- File Upload -->
+		<apache-commons-fileupload.version>1.2</apache-commons-fileupload.version>
+
 		<!-- Code Generation -->
 		<cglib.version>2.2</cglib.version>
 
@@ -490,6 +492,14 @@
 			<version>${gwt-platform.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- File Upload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${apache-commons-fileupload.version}</version>
+		</dependency>
+
 
 	</dependencies>
 

@@ -15,33 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.gatekeeper;
+package za.co.brewtour.client.application.admin.beer;
 
-import za.co.brewtour.shared.domain.CurrentUser;
-
-import com.google.inject.Inject;
-import com.gwtplatform.mvp.client.proxy.Gatekeeper;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 /**
- * Gatekeeper for administration places
- * 
  * @author Ivan Fourie
  */
-public class AdminGatekeeper implements Gatekeeper {
-	
-	private final CurrentUser currentUser;
-	
-	@Inject
-    public AdminGatekeeper(final CurrentUser currentUser) {
-            this.currentUser = currentUser;
-    }
-    
-	/* (non-Javadoc)
-	 * @see com.gwtplatform.mvp.client.proxy.Gatekeeper#canReveal()
-	 */
-	@Override
-	public boolean canReveal() {
-		return currentUser.getRoles().contains("ROLE_ADMIN");
-	}
+public class BeerAdminModule extends AbstractPresenterModule {
 
+   @Override
+   protected void configure() {
+      bindPresenter(BeerAdminPresenter.class, BeerAdminPresenter.MyView.class, BeerAdminView.class,
+            BeerAdminPresenter.MyProxy.class);
+   }
 }

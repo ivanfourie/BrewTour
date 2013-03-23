@@ -15,10 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.application.admin;
+package za.co.brewtour.client.application.admin.image;
 
 import za.co.brewtour.client.application.header.HeaderView;
 import za.co.brewtour.shared.domain.BeerDto;
+import za.co.brewtour.shared.domain.ImageDto;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.CellTable;
@@ -48,25 +49,15 @@ import com.gwtplatform.mvp.client.ViewImpl;
 /**
  * @author Ivan Fourie
  */
-public class BeerAdminView extends ViewImpl implements
-		BeerAdminPresenter.MyView, Editor<BeerDto> {
-	public interface Binder extends UiBinder<Widget, BeerAdminView> {
+public class ImageAdminView extends ViewImpl implements
+		ImageAdminPresenter.MyView, Editor<ImageDto> {
+	public interface Binder extends UiBinder<Widget, ImageAdminView> {
 	}
 
 	SimpleEditor<Integer> id = SimpleEditor.of();
 
 	@UiField
 	TextBox name;
-
-	@UiField
-	IntegerBox abv;
-
-	@UiField
-	ControlGroup abvControlGroup;
-
-	@UiField
-	@Editor.Ignore
-	HelpInline abvHelpInline;
 
 	@UiField
 	ControlGroup nameControlGroup;
@@ -101,10 +92,10 @@ public class BeerAdminView extends ViewImpl implements
 	*/
 	
 	@UiField(provided = true)
-	CellTable<BeerDto> exampleTable = new CellTable<BeerDto>(5,	GWT.<CellTable.SelectableResources> create(CellTable.SelectableResources.class));
+	CellTable<ImageDto> exampleTable = new CellTable<ImageDto>(5,	GWT.<CellTable.SelectableResources> create(CellTable.SelectableResources.class));
 
 	@UiField(provided = true)
-	DataGrid<BeerDto> exampleDataGrid = new DataGrid<BeerDto>(20, GWT.<DataGrid.SelectableResources> create(DataGrid.SelectableResources.class));
+	DataGrid<ImageDto> exampleDataGrid = new DataGrid<ImageDto>(20, GWT.<DataGrid.SelectableResources> create(DataGrid.SelectableResources.class));
 
 	@UiField
 	SubmitButton saveButton;
@@ -126,20 +117,20 @@ public class BeerAdminView extends ViewImpl implements
 	SimplePager pager = new SimplePager();
 	SimplePager dataGridPager = new SimplePager();
 
-	ListDataProvider<BeerDto> dataProvider = new ListDataProvider<BeerDto>();
+	ListDataProvider<ImageDto> dataProvider = new ListDataProvider<ImageDto>();
 	
-	interface Driver extends SimpleBeanEditorDriver<BeerDto, BeerAdminView> {
+	interface Driver extends SimpleBeanEditorDriver<ImageDto, ImageAdminView> {
 	}
 
 	@Inject
-	public BeerAdminView(final Binder binder, HeaderView header) {
+	public ImageAdminView(final Binder binder, HeaderView header) {
 		initWidget(binder.createAndBindUi(this));
 	}
 	
 	@Override
 	   public void resetAndFocus() {
 	      // Focus the cursor on the name field when the app loads
-	      //nameField.setFocus(true);
-	      //nameField.selectAll();
+			name.setFocus(true);
+			name.selectAll();
 	   }
 }

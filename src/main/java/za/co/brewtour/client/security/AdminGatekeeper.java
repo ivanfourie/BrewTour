@@ -15,41 +15,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
+package za.co.brewtour.client.security;
 
-package za.co.brewtour.client.place;
+import za.co.brewtour.shared.domain.CurrentUser;
+
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.proxy.Gatekeeper;
 
 /**
- * Main presenters name tokens.
+ * Gatekeeper for administration places
  * 
- * Tokens starts with bang operator (!) for AJAX SEO
- * 
- * @author Michael Bester
  * @author Ivan Fourie
  */
-public class NameTokens {
-	public static final String home = "!home";
-	public static final String response = "!response";
-	public static final String beers = "!beers";
-	public static final String beerAdmin = "!beer-admin";
-	public static final String imageAdmin = "!image-admin";
-
-	public static String getHome() {
-		return home;
-	}
-
-	public static String getResponse() {
-		return response;
-	}
-
-	public static String getBeerList() {
-		return beers;
-	}
-
-	public static String getBeerAdmin() {
-		return beerAdmin;
-	}
+public class AdminGatekeeper implements Gatekeeper {
 	
-	public static String getImageAdmin() {
-		return imageAdmin;
+	private final CurrentUser currentUser;
+	
+	@Inject
+    public AdminGatekeeper(final CurrentUser currentUser) {
+            this.currentUser = currentUser;
+    }
+    
+	/* (non-Javadoc)
+	 * @see com.gwtplatform.mvp.client.proxy.Gatekeeper#canReveal()
+	 */
+	@Override
+	public boolean canReveal() {
+		//TODO user access management
+		//return currentUser.getRoles().contains("ROLE_ADMIN");
+		return true;
 	}
+
 }

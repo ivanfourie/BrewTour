@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.server.dispatch;
+package za.co.brewtour.server.servlet;
 
 import java.io.IOException;
 import java.util.List;

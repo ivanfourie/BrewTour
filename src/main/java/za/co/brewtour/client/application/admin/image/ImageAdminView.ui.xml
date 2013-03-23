@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui" xmlns:d="urn:import:com.github.gwtbootstrap.datepicker.client.ui"
+	xmlns:head="urn:import:za.co.brewtour.client.application.header">
+	<ui:style>
+		.pager {
+            margin-bottom: 12px;
+        }
+        
+        /*.button {
+			margin-left: 12px;
+		}*/
+	</ui:style>
+
+	<g:HTMLPanel>
+		<h1>Image Administration</h1>
+		<b:FluidRow>
+			<b:Column size="6">
+				<b:Form type="HORIZONTAL" action="//gwtbootstrap.github.com"
+					ui:field="submitExampleForm">
+					<b:Fieldset>
+						<b:Legend>
+							Upload Image
+							<small>* is required</small>
+						</b:Legend>
+						<b:ControlGroup ui:field="nameControlGroup">
+							<b:ControlLabel for="name">
+								<font color="red">*</font>
+								Name
+							</b:ControlLabel>
+							<b:Controls>
+								<b:TextBox b:id="name" ui:field="name"
+									placeholder="beer name" />
+								<b:HelpInline ui:field="nameHelpInline" />
+							</b:Controls>
+						</b:ControlGroup>
+						<b:ControlGroup ui:field="imageControlGroup">
+							<b:ControlLabel for="image">Image</b:ControlLabel>
+							<b:Controls>
+								<b:FileUpload ui:field="fileInput" />
+							</b:Controls>
+						</b:ControlGroup>
+						<b:FormActions>
+							<b:SubmitButton type="PRIMARY" ui:field="saveButton">Save
+								changes</b:SubmitButton>
+							<b:Button ui:field="cancelButton">Cancel</b:Button>
+						</b:FormActions>
+					</b:Fieldset>
+				</b:Form>
+			</b:Column>
+			<b:Column size="6">
+				<b:TabPanel>
+					<b:TabPane active="true" heading="CellTable">
+						<b:SimplePager display="{exampleTable}" location="RIGHT"
+							fastForwardRows="15" styleName="{style.pager}" />
+						<b:CellTable ui:field="exampleTable" bordered="true"
+							condensed="true" striped="true" />
+					</b:TabPane>
+					<b:Tab ui:field="dataGridTab" heading="DataGrid">
+						<b:Pagination ui:field="dataGridPagination" />
+						<b:DataGrid ui:field="exampleDataGrid" bordered="true"
+							condensed="true" striped="true" height="200px" width="100%" />
+					</b:Tab>
+				</b:TabPanel>
+			</b:Column>
+		</b:FluidRow>
+
+
+
+	</g:HTMLPanel>
+</ui:UiBinder>

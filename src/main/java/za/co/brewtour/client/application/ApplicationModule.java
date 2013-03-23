@@ -17,7 +17,8 @@
  */
 package za.co.brewtour.client.application;
 
-import za.co.brewtour.client.application.admin.BeerAdminModule;
+import za.co.brewtour.client.application.admin.beer.BeerAdminModule;
+import za.co.brewtour.client.application.admin.image.ImageAdminModule;
 import za.co.brewtour.client.application.beer.BeerListModule;
 import za.co.brewtour.client.application.header.HeaderModule;
 import za.co.brewtour.client.application.home.HomeModule;
@@ -37,8 +38,9 @@ public class ApplicationModule extends AbstractPresenterModule {
 	  install(new HeaderModule());
 	  install(new HomeModule());
 	  install(new BeerListModule());
-	  // Admin
+	  // Admin modules
 	  install(new BeerAdminModule());
+	  install(new ImageAdminModule());
 	  
       // Application Presenter
       bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,

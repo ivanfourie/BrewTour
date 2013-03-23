@@ -15,18 +15,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.application.admin;
+package za.co.brewtour.shared.domain;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import java.util.Date;
+
+import com.gwtplatform.dispatch.annotation.GenDto;
+import com.gwtplatform.dispatch.annotation.Order;
 
 /**
- * @author Ivan Fourie
+ * Generates BeerDto
+ * 
+ * @author Ivan.Fourie
  */
-public class BeerAdminModule extends AbstractPresenterModule {
-
-   @Override
-   protected void configure() {
-      bindPresenter(BeerAdminPresenter.class, BeerAdminPresenter.MyView.class, BeerAdminView.class,
-            BeerAdminPresenter.MyProxy.class);
-   }
+@GenDto
+public class Image {
+   @Order(1)
+   String name;
+   @Order(2)
+   Date dateAdded;
+   @Order(2)
+   String imageUrl;
 }

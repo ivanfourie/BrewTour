@@ -27,6 +27,7 @@
 				<b:Nav ui:field="admin" alignment="RIGHT">
 					<b:Dropdown text="Admin">
 						<b:NavLink ui:field="beerAdmin">Beers</b:NavLink>
+						<b:NavLink ui:field="imageAdmin">Images</b:NavLink>
 					</b:Dropdown>
 				</b:Nav>
 			</b:ResponsiveNavbar>  
