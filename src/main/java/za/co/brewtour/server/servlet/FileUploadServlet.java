@@ -21,10 +21,18 @@ import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import za.co.brewtour.server.entity.Image;
+import za.co.brewtour.server.persistence.PMF;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,25 +65,59 @@ public class FileUploadServlet extends HttpServlet {
 					log.warning("Got an uploaded file: " + item.getFieldName()
 							+ ", name = " + item.getName());
 					
-					// TODO security
-					// TODO file type check
-					// TODO store image
-					// TODO return result
-					// You now have the filename (item.getName() and the
-					// contents (which you can read from stream). Here we just
-					// print them back out to the servlet output stream, but you
-					// will probably want to do something more interesting (for
-					// example, wrap them in a Blob and commit them to the
-					// datastore).
-					int len;
-					byte[] buffer = new byte[8192];
-					while ((len = stream.read(buffer, 0, buffer.length)) != -1) {
-						res.getOutputStream().write(buffer, 0, len);
+					// TODO check security
+					
+					String fileName = item.getName();
+					//TODO: Extensions can't be trusted; consider using JMimeMagic or Apache Tika
+					String mimeType = getServletContext().getMimeType(fileName);
+					if (isImage(mimeType)) {
+					    // It's an image.
+						
+						byte[] data = readFromStream(stream);
+						
+						saveImage(fileName, mimeType, data);
+
+						res.sendRedirect("/image?title=" + fileName);
 					}
 				}
 			}
 		} catch (Exception ex) {
 			throw new ServletException(ex);
 		}
+	}
+	
+	private boolean isImage(String mimeType) {
+		if (mimeType.startsWith("image"))
+		    return true;
+		
+		return false;    	
+	}
+	
+	private Image saveImage(String fileName, String imageType, byte[] data) {
+	    PersistenceManager pm = PMF.get().getPersistenceManager();
+
+	    Image img = new Image(fileName, imageType, data);
+	    
+	    try {
+	    	pm.makePersistent(img);
+	    } finally {
+	        pm.close();
+	    }
+
+	    return null;
+	}
+	
+	// TODO: move to file util
+	private byte[] readFromStream(InputStream inputStream) throws Exception {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		DataOutputStream dos = new DataOutputStream(baos);
+		byte[] data = new byte[4096];
+		int count = inputStream.read(data);
+		while (count != -1) {
+			dos.write(data, 0, count);
+			count = inputStream.read(data);
+		}
+
+		return baos.toByteArray();
 	}
 }

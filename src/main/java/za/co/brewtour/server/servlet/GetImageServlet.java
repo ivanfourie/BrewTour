@@ -19,6 +19,7 @@ package za.co.brewtour.server.servlet;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -40,6 +41,7 @@ public class GetImageServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final Logger log = Logger.getLogger(FileUploadServlet.class.getName());
 
 	@Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -51,7 +53,8 @@ public class GetImageServlet extends HttpServlet {
         		image.getData() != null) {
             // Set the appropriate Content-Type header and write the raw bytes
             // to the response's output stream
-            resp.setContentType("image/" + image.getImageType().toString().toLowerCase());
+        	log.info("Serving image: " + image.getTitle() + " [" + image.getImageType() + "; " + image.getData().length +"]");
+            resp.setContentType(image.getImageType());
             resp.getOutputStream().write(image.getData());
         } else {
             // If no image is found with the given title, redirect the user to
@@ -80,7 +83,7 @@ public class GetImageServlet extends HttpServlet {
 	        List<Image> results = (List<Image>) query.execute(title);
 	        if (results.iterator().hasNext()) {
 	            // If the results list is non-empty, return the first (and only)
-	            // result
+	            // result       	
 	            return results.get(0);
 	        }
 	    } finally {

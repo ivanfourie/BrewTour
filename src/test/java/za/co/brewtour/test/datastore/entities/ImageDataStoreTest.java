@@ -80,8 +80,8 @@ public class ImageDataStoreTest {
 		assertNotNull(is);
 		byte[] data = readFromStream(is);
 		// Create entity
-		
-		Image img = new Image(imageFileName, Image.ImageType.JPEG, data);
+		System.out.println("Data length: " + data.length);
+		Image img = new Image(imageFileName, "image/jpeg", data);
 		
 		// Persist entity
 		pm.makePersistent(img);
@@ -94,7 +94,7 @@ public class ImageDataStoreTest {
         
         Image dsimg = images.get(0);
         assertTrue("Entity title does not match input title ", img.getTitle().equals(imageFileName));
-        assertTrue("Entity ImageType does not match input ImageType ", img.getImageType().equals(Image.ImageType.JPEG));
+        assertTrue("Entity ImageType does not match input ImageType ", img.getImageType().equals("image/jpeg"));
         assertTrue("Entity data does not match input data ", Arrays.equals(dsimg.getData(), data));
 
 	}

@@ -35,10 +35,7 @@ import com.google.appengine.api.datastore.Key;
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Image {
-	/**
-	 * Enum for types of images
-	 */
-	public enum ImageType {JPEG, GIF, PNG} 
+	 
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
@@ -48,7 +45,7 @@ public class Image {
 
     @Persistent
     @Extension(vendorName="datanucleus", key="gae.unindexed", value="true")
-    private ImageType imageType;
+    private String imageType;
 
     @Persistent
     private Blob data;
@@ -63,7 +60,7 @@ public class Image {
 	 * @param imageType
 	 * @param data
 	 */
-	public Image(String title, ImageType imageType, byte[] data) {
+	public Image(String title, String imageType, byte[] data) {
 		super();
 		this.title = title;
 		this.imageType = imageType;
@@ -94,14 +91,14 @@ public class Image {
 	/**
 	 * @return the imageType
 	 */
-	public ImageType getImageType() {
+	public String getImageType() {
 		return imageType;
 	}
 
 	/**
 	 * @param imageType the imageType to set
 	 */
-	public void setImageType(ImageType imageType) {
+	public void setImageType(String imageType) {
 		this.imageType = imageType;
 	}
 
