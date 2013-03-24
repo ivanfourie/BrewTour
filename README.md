@@ -158,7 +158,7 @@ Beer beer = new Beer(...);
 pm.makePersistent(beer);
 ```
 
-So as you can see JDO is quite simple.
+So as you can see doing persistence here is quite simple.
 
 
 `end`
