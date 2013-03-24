@@ -84,7 +84,7 @@ BrewTour makes use of JDO (Java Data Objects), which is a Persistence API and OR
 First things first, we need to have a JDO configuration xml, this xml tells the application where it will persist to, how it will do so
 and so on:
 
-```META-INF/jdoconfig.xml```
+``` META-INF/jdoconfig.xml ```
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <jdoconfig xmlns="http://java.sun.com/xml/ns/jdo/jdoconfig"
@@ -101,6 +101,7 @@ and so on:
         <property name="datanucleus.appengine.autoCreateDatastoreTxns" value="true"/>
     </persistence-manager-factory>
 </jdoconfig>
+
 ```
 
 To enable persistence for a new entity, you'll need to add
@@ -135,9 +136,9 @@ It is as easy as that.
 
 Now that we have an entity, how do we commit it to the datastore you say?
 Firstly, we need an instance of the PersistenceManager, this manager allows us to read, write and update to/from the datastore.
-We can get an instance of a PersistenceManger using the PersistenceManagerFactory.getPersistenceManager() call. The PersistenceManagerFactory uses the jdoconfig.xml (explained 
+We can get an instance of a PersistenceManger using the PersistenceManagerFactory class. The PersistenceManagerFactory uses the jdoconfig.xml (explained 
 right at the beginning of the Persistence section) to give you an instance of a PersistanceManger, this call is quite costly in terms of performance so we have created another class
-called: ```za.co.brewtour.server.persistence.PMF``` that will create an instance of the PersistenceManager only once (when the first call is made to the Datastore, 
+called: `za.co.brewtour.server.persistence.PMF` that will create an instance of the PersistenceManager only once (when the first call is made to the Datastore, 
 this instance will be created).
 
 Now lets persist something!!
