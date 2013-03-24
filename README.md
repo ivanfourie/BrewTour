@@ -161,4 +161,4 @@ pm.makePersistent(beer);
 So as you can see JDO is quite simple.
 
 
-```end```
+`end`
