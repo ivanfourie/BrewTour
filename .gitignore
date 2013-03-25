@@ -7,3 +7,4 @@ target/
 .factorypath
 /bin
 *.log
+nb-configuration.xml
