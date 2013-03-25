@@ -31,6 +31,7 @@ import javax.jdo.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
@@ -57,7 +58,9 @@ public class ImageDataStoreTest {
 		helper.setUp();
 		pm = PMF.get().getPersistenceManager();
 		// load image from file
-		is = getClass().getResourceAsStream(imageFileName);
+		//is = getClass().getResourceAsStream(imageFileName);
+		ClassPathResource resource = new ClassPathResource(imageFileName);
+		is = resource.getInputStream();
 	}
 
 	/**

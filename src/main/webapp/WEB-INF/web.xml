@@ -32,8 +32,8 @@
 	</servlet>
 	
 	<servlet>
-		<servlet-name>FileUpload</servlet-name>
-		<servlet-class>za.co.brewtour.server.servlet.FileUploadServlet
+		<servlet-name>ImageUpload</servlet-name>
+		<servlet-class>za.co.brewtour.server.servlet.ImageUploadServlet
 		</servlet-class>
 	</servlet>
 
@@ -48,7 +48,7 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
-		<servlet-name>FileUpload</servlet-name>
+		<servlet-name>ImageUpload</servlet-name>
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 
