@@ -70,7 +70,7 @@ public class ImageUploadServlet extends HttpServlet {
 	
 				// Get the image serving URL
 				ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
-				String imageUrl = tidyUrl(imagesService.getServingUrl(options));
+				String imageUrl = tidyUrl(imagesService.getServingUrl(options), request.getServerPort());
 				log.info("Serving URL created: " + imageUrl);
 				// save image metadata to datastore
 				saveImage(imageName, imageUrl);
@@ -110,8 +110,8 @@ public class ImageUploadServlet extends HttpServlet {
 	 * 
 	 * @param imageUrl
 	 */
-	private String tidyUrl(String imageUrl) {
-		return imageUrl.replaceFirst("http://0.0.0.0:8888", "");
+	private String tidyUrl(String imageUrl, int port) {
+		return imageUrl.replaceFirst("http://0.0.0.0:"+port, "");
 	}
 
 	@Override
