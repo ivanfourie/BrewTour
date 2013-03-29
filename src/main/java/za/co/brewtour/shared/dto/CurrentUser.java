@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.shared.domain;
+package za.co.brewtour.shared.dto;
 
 import java.io.Serializable;
 import java.util.List;

@@ -17,23 +17,17 @@
  */
 package za.co.brewtour.shared.dispatch;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import za.co.brewtour.shared.dto.BeerDto;
-
 import com.gwtplatform.dispatch.annotation.GenDispatch;
 import com.gwtplatform.dispatch.annotation.Out;
 
 /**
- * Generates {@code GetBeersAction} and {@code GetBeersResult} classes through
+ * Generates {@code GetUploadUrlAction} and {@code GetUploadUrlResult} classes through
  * annotation.
  *
- * @author Ivan.Fourie
+ * @author Ivan Fourie
  */
 @GenDispatch(isSecure = false)
-public class GetBeers {
-
+public class GetUploadUrl {
     @Out(1)
-    List<za.co.brewtour.shared.dto.BeerDto> beerList = new ArrayList<za.co.brewtour.shared.dto.BeerDto>();
+    String uploadUrl;
 }

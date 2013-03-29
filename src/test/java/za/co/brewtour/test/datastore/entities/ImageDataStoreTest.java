@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -31,12 +30,10 @@ import javax.jdo.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.io.ClassPathResource;
-
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
-import za.co.brewtour.server.entity.Image;
+import za.co.brewtour.shared.domain.Image;
 import za.co.brewtour.server.persistence.PMF;
 
 /**
@@ -49,6 +46,7 @@ public class ImageDataStoreTest {
 
 	private InputStream is = null;
 	private String imageFileName = "ivan_homebrew_lager.jpg";
+	private String imageUrl = "http://ivanfourie:8888/_ah/img/pt7oKl1xrYV_BXrWmgj2lQ";
 
 	/**
 	 * @throws java.lang.Exception
@@ -59,8 +57,8 @@ public class ImageDataStoreTest {
 		pm = PMF.get().getPersistenceManager();
 		// load image from file
 		//is = getClass().getResourceAsStream(imageFileName);
-		ClassPathResource resource = new ClassPathResource(imageFileName);
-		is = resource.getInputStream();
+		//ClassPathResource resource = new ClassPathResource(imageFileName);
+		//is = resource.getInputStream();
 	}
 
 	/**
@@ -80,11 +78,11 @@ public class ImageDataStoreTest {
 	@Test
 	public void addNewImageTest() throws Exception {
 		// Test image is loaded
-		assertNotNull(is);
-		byte[] data = readFromStream(is);
+		//assertNotNull(is);
+		//byte[] data = readFromStream(is);
 		// Create entity
-		System.out.println("Data length: " + data.length);
-		Image img = new Image(imageFileName, "image/jpeg", data);
+		
+		Image img = new Image(imageFileName, imageUrl);
 		
 		// Persist entity
 		pm.makePersistent(img);
@@ -96,12 +94,12 @@ public class ImageDataStoreTest {
         assertTrue("Entities list's size must be 1", images.size() == 1);
         
         Image dsimg = images.get(0);
-        assertTrue("Entity title does not match input title ", img.getTitle().equals(imageFileName));
-        assertTrue("Entity ImageType does not match input ImageType ", img.getImageType().equals("image/jpeg"));
-        assertTrue("Entity data does not match input data ", Arrays.equals(dsimg.getData(), data));
+        assertTrue("Entity title does not match input title ", dsimg.getName().equals(imageFileName));
+        assertTrue("Entity ImageType does not match input ImageType ", dsimg.getImageUrl().equals(imageUrl));
 
 	}
 
+	@Deprecated
 	public byte[] readFromStream(InputStream inputStream) throws Exception {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(baos);

@@ -18,29 +18,24 @@
 package za.co.brewtour.client.application.admin.image;
 
 import za.co.brewtour.client.application.header.HeaderView;
-import za.co.brewtour.shared.domain.BeerDto;
-import za.co.brewtour.shared.domain.ImageDto;
+import za.co.brewtour.shared.domain.Image;
+import za.co.brewtour.shared.dto.BeerDto;
 
-import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.CellTable;
 import com.github.gwtbootstrap.client.ui.ControlGroup;
 import com.github.gwtbootstrap.client.ui.DataGrid;
 import com.github.gwtbootstrap.client.ui.Form;
 import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.IntegerBox;
 import com.github.gwtbootstrap.client.ui.Pagination;
 import com.github.gwtbootstrap.client.ui.SimplePager;
 import com.github.gwtbootstrap.client.ui.SubmitButton;
 import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.ValueListBox;
-import com.github.gwtbootstrap.datepicker.client.ui.DateBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.editor.client.adapters.SimpleEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.inject.Inject;
@@ -50,7 +45,7 @@ import com.gwtplatform.mvp.client.ViewImpl;
  * @author Ivan Fourie
  */
 public class ImageAdminView extends ViewImpl implements
-		ImageAdminPresenter.MyView, Editor<ImageDto> {
+		ImageAdminPresenter.MyView, Editor<Image> {
 	public interface Binder extends UiBinder<Widget, ImageAdminView> {
 	}
 
@@ -92,10 +87,10 @@ public class ImageAdminView extends ViewImpl implements
 	*/
 	
 	@UiField(provided = true)
-	CellTable<ImageDto> exampleTable = new CellTable<ImageDto>(5,	GWT.<CellTable.SelectableResources> create(CellTable.SelectableResources.class));
+	CellTable<Image> exampleTable = new CellTable<Image>(5,	GWT.<CellTable.SelectableResources> create(CellTable.SelectableResources.class));
 
 	@UiField(provided = true)
-	DataGrid<ImageDto> exampleDataGrid = new DataGrid<ImageDto>(20, GWT.<DataGrid.SelectableResources> create(DataGrid.SelectableResources.class));
+	DataGrid<Image> exampleDataGrid = new DataGrid<Image>(20, GWT.<DataGrid.SelectableResources> create(DataGrid.SelectableResources.class));
 
 	@UiField
 	SubmitButton saveButton;
@@ -117,9 +112,9 @@ public class ImageAdminView extends ViewImpl implements
 	SimplePager pager = new SimplePager();
 	SimplePager dataGridPager = new SimplePager();
 
-	ListDataProvider<ImageDto> dataProvider = new ListDataProvider<ImageDto>();
+	ListDataProvider<BeerDto> dataProvider = new ListDataProvider<BeerDto>();
 	
-	interface Driver extends SimpleBeanEditorDriver<ImageDto, ImageAdminView> {
+	interface Driver extends SimpleBeanEditorDriver<Image, ImageAdminView> {
 	}
 
 	@Inject

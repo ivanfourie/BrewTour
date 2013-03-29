@@ -198,7 +198,8 @@
                 <configuration>
                     <!-- Make sure this path contains your persistent classes! You can
                     have multiple path filters here separated by commas. -->
-                    <mappingIncludes>**/server/entity/*</mappingIncludes>
+                    <!-- <mappingIncludes>**/server/entity/*</mappingIncludes>  -->
+                    <mappingIncludes>**/shared/domain/*</mappingIncludes>
                     <verbose>true</verbose>
                     <enhancerName>ASM</enhancerName>
                     <api>JDO</api>
@@ -456,12 +457,12 @@
             <version>${gwt.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
             <version>${gwt.version}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency>  -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>

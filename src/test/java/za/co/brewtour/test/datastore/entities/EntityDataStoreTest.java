@@ -31,8 +31,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import za.co.brewtour.server.entity.Beer;
 import za.co.brewtour.server.persistence.PMF;
+import za.co.brewtour.shared.domain.Beer;
 
 /**
  *

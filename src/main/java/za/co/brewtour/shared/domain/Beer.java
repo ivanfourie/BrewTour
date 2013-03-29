@@ -1,46 +1,130 @@
-/**
- * Copyright (C) 2013 BrewTour
+/*
+ * Copyright 2013 BrewTour.
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
- * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package za.co.brewtour.shared.domain;
 
-import com.gwtplatform.dispatch.annotation.GenDto;
-import com.gwtplatform.dispatch.annotation.Order;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import java.util.Date;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 /**
- * Generates BeerDto
  * 
- * @author Ivan.Fourie
+ * @author bestermichael
  */
-@GenDto
+@PersistenceCapable(detachable = "true")
 public class Beer {
-   @Order(1)
-   String name;
-   @Order(2)
-   String description;
-   @Order(3)
-   String brewery;
-   @Order(4)
-   String breweryUrl;
-   @Order(5)
-   String location;
-   @Order(6)
-   String beerStyle;
-   @Order(7)
-   String abv;
-   @Order(8)
-   String imageUrl;
+
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	@Persistent
+	private String beerName;
+	@Persistent
+	private String description;
+	@Persistent
+	private String breweryName;
+	@Persistent
+	private Date introduced;
+	@Persistent
+	private String abv;
+	@Persistent
+	private String style;
+	@Persistent
+	private String imageLink;
+
+	/**
+	 * Constructs a Beer Entity
+	 * 
+	 * @param beerName
+	 * @param breweryName
+	 * @param introduced
+	 * @param abv
+	 * @param style
+	 * @param imageLink
+	 */
+	public Beer(String beerName, String description, String breweryName, Date introduced, String abv, String style,
+			String imageLink) {
+		this.beerName = beerName;
+		this.description = description;
+		this.breweryName = breweryName;
+		this.introduced = introduced;
+		this.style = style;
+		this.imageLink = imageLink;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getBeerName() {
+		return beerName;
+	}
+
+	public String getBreweryName() {
+		return breweryName;
+	}
+
+	public Date getIntroduced() {
+		return introduced;
+	}
+
+	public String getAbv() {
+		return abv;
+	}
+
+	public void setBeerName(String beerName) {
+		this.beerName = beerName;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setBreweryName(String breweryName) {
+		this.breweryName = breweryName;
+	}
+
+	public void setIntroduced(Date introduced) {
+		this.introduced = introduced;
+	}
+
+	public void setAbv(String abv) {
+		this.abv = abv;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public Key getKey() {
+		return key;
+	}
 }

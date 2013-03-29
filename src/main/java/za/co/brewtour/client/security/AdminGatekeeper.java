@@ -17,7 +17,7 @@
  */
 package za.co.brewtour.client.security;
 
-import za.co.brewtour.shared.domain.CurrentUser;
+import za.co.brewtour.shared.dto.CurrentUser;
 
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.proxy.Gatekeeper;

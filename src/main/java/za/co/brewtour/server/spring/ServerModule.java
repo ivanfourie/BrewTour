@@ -27,8 +27,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import za.co.brewtour.server.dispatch.GetBeersHandler;
+import za.co.brewtour.server.dispatch.GetUploadUrlHandler;
 import za.co.brewtour.server.dispatch.SendTextToServerHandler;
 import za.co.brewtour.shared.dispatch.GetBeersAction;
+import za.co.brewtour.shared.dispatch.GetUploadUrlAction;
 import za.co.brewtour.shared.dispatch.SendTextToServerAction;
 
 import com.gwtplatform.dispatch.server.actionvalidator.ActionValidator;
@@ -47,34 +49,40 @@ import com.gwtplatform.dispatch.server.spring.configuration.DefaultModule;
 @Import(DefaultModule.class)
 @ComponentScan(basePackages = "com.gwtplatform.dispatch.server.spring")
 public class ServerModule extends HandlerModule {
-   public ServerModule() {
-   }
+	public ServerModule() {
+	}
 
-   @Bean
-   public SendTextToServerHandler getSendTextToServerHandler() {
-      return new SendTextToServerHandler();
-   }
+	@Bean
+	public SendTextToServerHandler getSendTextToServerHandler() {
+		return new SendTextToServerHandler();
+	}
 
-   @Bean
-   public GetBeersHandler getBeersHandler() {
-      return new GetBeersHandler();
-   }
+	@Bean
+	public GetBeersHandler getBeersHandler() {
+		return new GetBeersHandler();
+	}
 
-   @Bean
-   public ActionValidator getDefaultActionValidator() {
-      return new DefaultActionValidator();
-   }
+	@Bean
+	public GetUploadUrlHandler getUploadUrlHandler() {
+		return new GetUploadUrlHandler();
+	}
 
-   @Bean
-   public LoggerFactoryBean getLogger() {
-      Logger logger = Logger.getAnonymousLogger();
-      logger.setLevel(Level.FINEST);
-      return new LoggerFactoryBean(logger);
-   }
+	@Bean
+	public ActionValidator getDefaultActionValidator() {
+		return new DefaultActionValidator();
+	}
 
-   @Override
-   protected void configureHandlers() {
-      bindHandler(SendTextToServerAction.class, SendTextToServerHandler.class);
-      bindHandler(GetBeersAction.class, GetBeersHandler.class);
-   }
+	@Bean
+	public LoggerFactoryBean getLogger() {
+		Logger logger = Logger.getAnonymousLogger();
+		logger.setLevel(Level.FINEST);
+		return new LoggerFactoryBean(logger);
+	}
+
+	@Override
+	protected void configureHandlers() {
+		bindHandler(SendTextToServerAction.class, SendTextToServerHandler.class);
+		bindHandler(GetBeersAction.class, GetBeersHandler.class);
+		bindHandler(GetUploadUrlAction.class, GetUploadUrlHandler.class);
+	}
 }

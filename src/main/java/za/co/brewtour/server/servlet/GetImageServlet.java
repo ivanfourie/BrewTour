@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import za.co.brewtour.server.entity.Image;
+import za.co.brewtour.shared.domain.Image;
 import za.co.brewtour.server.persistence.PMF;
 
 /**
@@ -41,24 +41,19 @@ public class GetImageServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(FileUploadServlet.class.getName());
+	private static final Logger log = Logger.getLogger(GetImageServlet.class.getName());
 
 	@Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        String title = req.getParameter("title");
-        Image image = getImage(title);
+        String name = req.getParameter("name");
+        Image image = getImage(name);
 
-        if (image != null && image.getImageType() != null &&
-        		image.getData() != null) {
-            // Set the appropriate Content-Type header and write the raw bytes
-            // to the response's output stream
-        	log.info("Serving image: " + image.getTitle() + " [" + image.getImageType() + "; " + image.getData().length +"]");
-            resp.setContentType(image.getImageType());
-            resp.getOutputStream().write(image.getData());
+        if (image != null && image.getImageUrl() != null)  {
+        	log.info("Redirecting to image: " + image.getName() + " [" + image.getImageUrl() + "]");
+            resp.sendRedirect(image.getImageUrl());
         } else {
-            // If no image is found with the given title, redirect the user to
-            // a static image
+            // If no image is found with the given title, redirect the user to a static image
             resp.sendRedirect("/static/noimage.png");
         }
     }
@@ -69,7 +64,7 @@ public class GetImageServlet extends HttpServlet {
 	 *
 	 * @param title image title to look up
 	 */
-	private Image getImage(String title) {
+	private Image getImage(String name) {
 	    PersistenceManager pm = PMF.get().getPersistenceManager();
 
 	    // Search for any Movie object with the passed-in title; limit the number
@@ -80,7 +75,7 @@ public class GetImageServlet extends HttpServlet {
 	    query.setRange(0, 1);
 
 	    try {
-	        List<Image> results = (List<Image>) query.execute(title);
+	        List<Image> results = (List<Image>) query.execute(name);
 	        if (results.iterator().hasNext()) {
 	            // If the results list is non-empty, return the first (and only)
 	            // result       	

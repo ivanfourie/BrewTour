@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import com.gwtplatform.dispatch.shared.ActionException;
 
-import za.co.brewtour.shared.domain.BeerDto;
+import za.co.brewtour.shared.dto.BeerDto;
 
 /**
  * Simple test class to tes {@link za.co.brewtour.server.dispatch.GetBeersHandler GetBeersHandler}

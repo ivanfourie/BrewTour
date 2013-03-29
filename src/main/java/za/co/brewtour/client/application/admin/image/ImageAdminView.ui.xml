@@ -65,7 +65,5 @@
 			</b:Column>
 		</b:FluidRow>
 
-
-
 	</g:HTMLPanel>
 </ui:UiBinder>

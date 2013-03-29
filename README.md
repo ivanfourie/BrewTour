@@ -27,6 +27,12 @@ To similuate running in Google App Engine, use the gae:run goal
 
 `mvn gae:run`
 
+### Bind Address & Serving URLs
+
+The project uses Google App Engine APIs such as ImageService and Blobstore which generates serving URLS.
+To avoid avoid cross site scripting issues with the image upload functions, make sure to set up the bind address to your hostname.  
+
+`-bindAddress <hostname>` 
 
 Stack
 -----

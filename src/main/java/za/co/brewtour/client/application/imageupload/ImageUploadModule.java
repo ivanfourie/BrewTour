@@ -15,18 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.application.admin.image;
+package za.co.brewtour.client.application.imageupload;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 /**
  * @author Ivan Fourie
  */
-public class ImageAdminModule extends AbstractPresenterModule {
+public class ImageUploadModule extends AbstractPresenterModule {
 
 	@Override
 	protected void configure() {
-		bindPresenter(ImageAdminPresenter.class, ImageAdminPresenter.MyView.class, ImageAdminView.class,
-				ImageAdminPresenter.MyProxy.class);
+
+		// ImageUpload Presenter
+		bindPresenterWidget(ImageUploadPresenter.class, ImageUploadPresenter.MyView.class, ImageUploadView.class);
+
 	}
 }

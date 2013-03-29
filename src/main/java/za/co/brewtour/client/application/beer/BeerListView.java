@@ -21,7 +21,7 @@ package za.co.brewtour.client.application.beer;
 import java.util.List;
 
 import za.co.brewtour.client.application.ui.BeerItem;
-import za.co.brewtour.shared.domain.BeerDto;
+import za.co.brewtour.shared.dto.BeerDto;
 
 import com.github.gwtbootstrap.client.ui.Brand;
 import com.github.gwtbootstrap.client.ui.Button;

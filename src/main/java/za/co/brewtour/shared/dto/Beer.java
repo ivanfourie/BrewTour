@@ -15,18 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  * 
  */
-package za.co.brewtour.client.application.admin.image;
+package za.co.brewtour.shared.dto;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.gwtplatform.dispatch.annotation.GenDto;
+import com.gwtplatform.dispatch.annotation.Order;
 
 /**
- * @author Ivan Fourie
+ * Generates BeerDto
+ * 
+ * @author Ivan.Fourie
  */
-public class ImageAdminModule extends AbstractPresenterModule {
-
-	@Override
-	protected void configure() {
-		bindPresenter(ImageAdminPresenter.class, ImageAdminPresenter.MyView.class, ImageAdminView.class,
-				ImageAdminPresenter.MyProxy.class);
-	}
+@GenDto
+public class Beer {
+	@Order(1)
+	String name;
+	@Order(2)
+	String description;
+	@Order(3)
+	String brewery;
+	@Order(4)
+	String breweryUrl;
+	@Order(5)
+	String location;
+	@Order(6)
+	String beerStyle;
+	@Order(7)
+	String abv;
+	@Order(8)
+	String imageUrl;
 }

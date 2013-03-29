@@ -18,7 +18,7 @@
 package za.co.brewtour.client.application.admin.beer;
 
 import za.co.brewtour.client.application.header.HeaderView;
-import za.co.brewtour.shared.domain.BeerDto;
+import za.co.brewtour.shared.dto.BeerDto;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.CellTable;

@@ -22,6 +22,8 @@ import za.co.brewtour.client.application.admin.image.ImageAdminModule;
 import za.co.brewtour.client.application.beer.BeerListModule;
 import za.co.brewtour.client.application.header.HeaderModule;
 import za.co.brewtour.client.application.home.HomeModule;
+import za.co.brewtour.client.application.imageupload.ImageUploadModule;
+
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 /**
@@ -32,18 +34,23 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
  */
 public class ApplicationModule extends AbstractPresenterModule {
 
-   @Override
-   protected void configure() {
-	  // Install modules
-	  install(new HeaderModule());
-	  install(new HomeModule());
-	  install(new BeerListModule());
-	  // Admin modules
-	  install(new BeerAdminModule());
-	  install(new ImageAdminModule());
-	  
-      // Application Presenter
-      bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-            ApplicationPresenter.MyProxy.class);
-   }
+	@Override
+	protected void configure() {
+
+		// Install widgets
+		install(new ImageUploadModule());
+		
+		// Install normal modules
+		install(new HeaderModule());
+		install(new HomeModule());
+		install(new BeerListModule());
+		
+		// Install admin modules
+		install(new BeerAdminModule());
+		install(new ImageAdminModule());
+
+		// Application Presenter
+		bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
+				ApplicationPresenter.MyProxy.class);
+	}
 }
