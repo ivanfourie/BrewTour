@@ -91,6 +91,9 @@ public class ImageUploadPresenter extends PresenterWidget<ImageUploadPresenter.M
 	}
 	
 	private void handleResult(String result) {
+		// New blobstore upload session after upload.
+		startUploadSession();
+		// Set view to returned image url
 		if (result != null) {
 			getView().setImageUrl(result+calculateImageSize());
 			getView().setServerResponse("Image uploaded");
