@@ -24,7 +24,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
- * 
+ * JDO Entity for Beer objects.
+ *
  * @author bestermichael
  */
 @PersistenceCapable(detachable = "true")
@@ -38,7 +39,7 @@ public class Beer {
 	@Persistent
 	private String description;
 	@Persistent
-	private String breweryName;
+	private Brewery brewery;
 	@Persistent
 	private Date introduced;
 	@Persistent
@@ -50,7 +51,7 @@ public class Beer {
 
 	/**
 	 * Constructs a Beer Entity
-	 * 
+	 *
 	 * @param beerName
 	 * @param breweryName
 	 * @param introduced
@@ -58,11 +59,11 @@ public class Beer {
 	 * @param style
 	 * @param imageLink
 	 */
-	public Beer(String beerName, String description, String breweryName, Date introduced, String abv, String style,
+	public Beer(String beerName, String description, Brewery brewery, Date introduced, String abv, String style,
 			String imageLink) {
 		this.beerName = beerName;
 		this.description = description;
-		this.breweryName = breweryName;
+		this.brewery = brewery;
 		this.introduced = introduced;
 		this.style = style;
 		this.imageLink = imageLink;
@@ -76,8 +77,8 @@ public class Beer {
 		return beerName;
 	}
 
-	public String getBreweryName() {
-		return breweryName;
+	public Brewery getBrewery() {
+		return brewery;
 	}
 
 	public Date getIntroduced() {
@@ -96,8 +97,8 @@ public class Beer {
 		this.description = description;
 	}
 
-	public void setBreweryName(String breweryName) {
-		this.breweryName = breweryName;
+	public void setBrewery(Brewery brewery) {
+		this.brewery = brewery;
 	}
 
 	public void setIntroduced(Date introduced) {
